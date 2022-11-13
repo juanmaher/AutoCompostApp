@@ -10,6 +10,7 @@ class AutoCompostApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'AutoCompost App',
+      navigatorKey: router.navigatorKey,
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),

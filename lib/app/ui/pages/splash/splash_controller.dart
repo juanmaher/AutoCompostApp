@@ -9,11 +9,10 @@ import '../../routes/routes.dart';
 
 class SplashController extends SimpleNotifier {
 
-  final Permission _locationPermission;
   String? _routeName;
   String? get routeName => _routeName;
 
-  SplashController(this._locationPermission) {
+  SplashController() {
     _init();
   }
 
@@ -23,12 +22,6 @@ class SplashController extends SimpleNotifier {
     final user = await _authRepository.user;
     //Si es != null es porque tenemos una sesion activa en el dispositivo
     _routeName = user != null ? Routes.HOME : Routes.LOGIN;
-    notify();
-  }
-
-  Future<void> checkPermission() async {
-    final isGranted = await _locationPermission.isGranted;
-    _routeName = isGranted?Routes.HOME:Routes.PERMISSIONS;
     notify();
   }
 }
