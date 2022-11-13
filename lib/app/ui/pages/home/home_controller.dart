@@ -2,7 +2,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HomeController {
 
-  final initialCamaraPosition = CameraPosition(
+  final initialCamaraPosition = const CameraPosition(
     target: LatLng(-34.616655, -58.4622398),
     zoom: 11,
   );
