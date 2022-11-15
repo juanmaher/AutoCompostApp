@@ -14,6 +14,8 @@ class RequestPermissionPage extends StatefulWidget {
 class _RequestPermissionPageState extends State<RequestPermissionPage> with WidgetsBindingObserver{
   final _controller = RequestPermissionController(Permission.locationWhenInUse);
   late StreamSubscription _subscription;
+  /*Para evitar que maps se renderice dos veces*/
+  bool _fromSettings = false;
 
   @override
   void initState() {
@@ -33,9 +35,9 @@ class _RequestPermissionPageState extends State<RequestPermissionPage> with Widg
                   content: const Text("No se pudo obtener el acceso a la ubicacion y son necesarios para poder continuar."),
                   actions: [
                     TextButton(
-                        onPressed: (){
+                        onPressed: () async {
                           Navigator.pop(context);
-                          openAppSettings();
+                          _fromSettings = await openAppSettings();
                         },
                         child: const Text("Ir a configuracion"),
                     ),
@@ -56,12 +58,13 @@ class _RequestPermissionPageState extends State<RequestPermissionPage> with Widg
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) async {
-    if (state == AppLifecycleState.resumed){
+    if (state == AppLifecycleState.resumed && _fromSettings){
       final status = await _controller.check();
       if(status == PermissionStatus.granted){
         _goToMaps();
       }
     }
+    _fromSettings = false;
   }
 
   @override
