@@ -4,7 +4,6 @@ part 'register_state.freezed.dart';
 
 @freezed
 class RegisterState with _$RegisterState {
-
   factory RegisterState({
     @Default('') String email,
     @Default('') String password,
