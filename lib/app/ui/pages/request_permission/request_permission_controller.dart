@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:permission_handler/permission_handler.dart';
 
 class RequestPermissionController {
@@ -9,8 +8,15 @@ class RequestPermissionController {
   final _streamController = StreamController<PermissionStatus>.broadcast();
 
   Stream<PermissionStatus> get onStatusChanged => _streamController.stream;
-  request() async {
+
+  Future<PermissionStatus> check() async{
+    final status = await _locationPermission.status;
+    return status;
+  }
+
+  Future<void> request() async {
     final status = await _locationPermission.request();
+    print("Satus $status");
     _notify(status);
   }
 

@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.green,
               child: const Text("maps"),
               onPressed: () {
-                router.pushNamed(Routes.MAPS);
+                router.pushNamed(Routes.PERMISSIONS);
               },
             )
           ],

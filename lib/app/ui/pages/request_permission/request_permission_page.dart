@@ -1,9 +1,7 @@
 import 'dart:async';
-
 import 'package:autocompost/app/ui/pages/request_permission/request_permission_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-
 import '../../routes/routes.dart';
 
 class RequestPermissionPage extends StatefulWidget {
@@ -13,28 +11,71 @@ class RequestPermissionPage extends StatefulWidget {
   State<RequestPermissionPage> createState() => _RequestPermissionPageState();
 }
 
-class _RequestPermissionPageState extends State<RequestPermissionPage> {
+class _RequestPermissionPageState extends State<RequestPermissionPage> with WidgetsBindingObserver{
   final _controller = RequestPermissionController(Permission.locationWhenInUse);
   late StreamSubscription _subscription;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _subscription = _controller.onStatusChanged.listen(
-            (status) {
-              if(status == PermissionStatus.granted) {
-                Navigator.pushReplacementNamed(context, Routes.HOME);
-              }
-            },
+      (status) {
+        switch(status) {
+          case PermissionStatus.granted:
+            Navigator.pushReplacementNamed(context, Routes.MAPS);
+            break;
+          case PermissionStatus.permanentlyDenied:
+            showDialog(
+                context: context,
+                builder: (_)=> AlertDialog(
+                  title: const Text("INFO"),
+                  content: const Text("No se pudo obtener el acceso a la ubicacion y son necesarios para poder continuar."),
+                  actions: [
+                    TextButton(
+                        onPressed: (){
+                          Navigator.pop(context);
+                          openAppSettings();
+                        },
+                        child: const Text("Ir a configuracion"),
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text("Cancelar")
+                    ),
+                  ],
+                ),
+            );
+            break;
+        }
+      },
     );
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) async {
+    if (state == AppLifecycleState.resumed){
+      final status = await _controller.check();
+      if(status == PermissionStatus.granted){
+        _goToMaps();
+      }
+    }
   }
 
   @override
   void dispose() {
     super.dispose();
+    WidgetsBinding.instance!.removeObserver(this);
     _controller.dispose();
     _subscription.cancel();
   }
+
+  void _goToMaps(){
+    Navigator.pushReplacementNamed(context, Routes.MAPS);
+  }
+
 
   @override
   Widget build(BuildContext context) {
