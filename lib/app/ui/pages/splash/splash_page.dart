@@ -1,38 +1,33 @@
 import 'package:autocompost/app/ui/pages/splash/splash_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter_meedu/meedu.dart';
+import 'package:flutter_meedu/ui.dart';
 
-class SplashPage extends StatefulWidget {
+final splashProvider = SimpleProvider(
+        (_) => SplashController(),
+);
+
+class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
 
   @override
-  State<SplashPage> createState() => _SplashPageState();
-}
-
-class _SplashPageState extends State<SplashPage> {
-
-  final _controller = SplashController(Permission.locationWhenInUse);
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(
-            (_) {
-              _controller.checkPermission();
-            });
-    _controller.addListener(() {
-      if(_controller.routeName != null) {
-        Navigator.pushReplacementNamed(context, _controller.routeName!);
-      }
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: CircularProgressIndicator(),
-      ),
+    return ProviderListener<SplashController>(
+        provider: splashProvider,
+        onChange: (_,controller) {
+          final routeName = controller.routeName;
+          if(routeName != null) {
+            //Con esto navego a login o a home
+            router.pushReplacementNamed(routeName);
+          }
+        },
+        builder: (_, __) {
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        },
     );
   }
 }
