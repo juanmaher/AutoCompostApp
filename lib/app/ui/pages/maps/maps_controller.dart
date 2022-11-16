@@ -9,7 +9,7 @@ class MapsController extends ChangeNotifier{
   /*Definicion de la posicion inicial del mapa*/
   final initialCamaraPosition = CameraPosition(
     target: LatLng(-34.616655, -58.4622398),
-    zoom: 11,
+    zoom: 12,
   );
 
   /*Definicion de los marcadores*/

@@ -79,7 +79,6 @@ class _RequestPermissionPageState extends State<RequestPermissionPage> with Widg
     Navigator.pushReplacementNamed(context, Routes.MAPS);
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,3 +98,26 @@ class _RequestPermissionPageState extends State<RequestPermissionPage> with Widg
     );
   }
 }
+
+
+/*
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          alignment: Alignment.center,
+          child: ElevatedButton(
+            child: const Text("Allow"),
+            onPressed: () {
+              _controller.request();
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+*/

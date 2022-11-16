@@ -42,6 +42,14 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 router.pushNamed(Routes.PERMISSIONS);
               },
+            ),
+            const SizedBox(height: 20),
+            CupertinoButton(
+              color: Colors.green,
+              child: const Text("List"),
+              onPressed: () {
+                router.pushNamed(Routes.LIST);
+              },
             )
           ],
         ),

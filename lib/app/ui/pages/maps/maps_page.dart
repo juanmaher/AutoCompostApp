@@ -29,6 +29,7 @@ class MapsPage extends StatelessWidget {
                   markers: controller.markers,
                   initialCameraPosition: controller.initialCamaraPosition,
                   myLocationButtonEnabled: true,
+                  myLocationEnabled: true,
                   zoomControlsEnabled: false,
                 );
               },
