@@ -56,7 +56,7 @@ class _ListPageState extends State<ListPage> {
   ];
 
   List<String> directions = [
-    'comgooglemaps://?center=-34.622,-58.377'
+    'https://www.google.com/maps/place/Plaza+Rosario+Vera+Pe%C3%B1aloza/@-34.6221596,-58.3779597,17z/data=!3m1!4b1!4m6!3m5!1s0x95bccb2c394d78bf:0xd94a9d25735bb6c7!8m2!3d-34.622164!4d-58.375771!16s%2Fg%2F11bz_3vnhr'
     'https://www.google.com/maps/place/Plaza+Rosario+Vera+Pe%C3%B1aloza/@-34.622164,-58.3779597,17z/data=!3m1!4b1!4m6!3m5!1s0x95bccb2c394d78bf:0xd94a9d25735bb6c7!8m2!3d-34.622164!4d-58.375771!16s%2Fg%2F11bz_3vnhr',
     'https://www.google.com/maps/place/Plaza+Monse%C3%B1or+Miguel+de+Andrea/@-34.5974235,-58.4093962,17z/data=!3m1!4b1!4m6!3m5!1s0x95bcca8e352312eb:0x41ea1e5f4f2d7e87!8m2!3d-34.5974235!4d-58.4072075!16s%2Fg%2F11c46b2yk8',
     'https://www.google.com/maps/search/Plaza+1ro+de+Mayo+(Hip%C3%B3lito+Yrigoyen+y+Pasco)./@-34.610952,-58.399955,17z/data=!3m1!4b1',
@@ -75,13 +75,15 @@ class _ListPageState extends State<ListPage> {
   ];
 
   void _launchMap(String adr) async{
+
     final Uri googleMapsUrl = Uri.parse(adr);
 
     if(await canLaunchUrl(googleMapsUrl)){
-      await launchUrl(googleMapsUrl);
+      await launchUrl(googleMapsUrl, mode: LaunchMode.externalNonBrowserApplication,);
     } else {
-      print('No se pudo abrir');
+      throw 'No se pudo abrir';
     }
+
   }
 
   @override
