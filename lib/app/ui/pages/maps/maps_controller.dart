@@ -58,7 +58,7 @@ class MapsController extends ChangeNotifier{
   void setMarkersOnMap(GoogleMapController controller){
 
     Marker marker;
-    for (var i = 0; i < 14; i++){
+    for (var i = 0; i < 15; i++){
       marker = Marker(
         markerId: MarkerId('$i'),
         position: listOfLatLngs[i],

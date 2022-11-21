@@ -81,6 +81,7 @@ class _RequestPermissionPageState extends State<RequestPermissionPage> with Widg
 
   @override
   Widget build(BuildContext context) {
+   _controller.request(); // Permite preguntar antes
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -88,7 +89,7 @@ class _RequestPermissionPageState extends State<RequestPermissionPage> with Widg
           height: double.infinity,
           alignment: Alignment.center,
           child: ElevatedButton(
-            child: const Text("Allow"),
+            child: const Text("Ir al mapa"),
             onPressed: () {
               _controller.request();
             },
@@ -98,26 +99,3 @@ class _RequestPermissionPageState extends State<RequestPermissionPage> with Widg
     );
   }
 }
-
-
-/*
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          alignment: Alignment.center,
-          child: ElevatedButton(
-            child: const Text("Allow"),
-            onPressed: () {
-              _controller.request();
-            },
-          ),
-        ),
-      ),
-    );
-  }
-}
-*/

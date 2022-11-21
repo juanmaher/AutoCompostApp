@@ -6,4 +6,5 @@ abstract class Routes {
   static const PERMISSIONS = '/permissions';
   static const MAPS = '/maps';
   static const LIST = '/list';
+  static const COMMUNITY_COMPOST = '/community_compost';
 }
