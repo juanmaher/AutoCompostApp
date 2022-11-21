@@ -4,8 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
-class MapsPage extends StatelessWidget {
+
+class MapsPage extends StatefulWidget {
   const MapsPage({Key? key}) : super(key: key);
+
+  @override
+  State<MapsPage> createState() => _MapsPageState();
+}
+
+class _MapsPageState extends State<MapsPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +31,7 @@ class MapsPage extends StatelessWidget {
                 if(!controller.gpsEnabled){
                   return gpsMessageWidget!;
                 }
+
                 return GoogleMap(
                   onMapCreated: controller.onMapCreated,
                   markers: controller.markers,

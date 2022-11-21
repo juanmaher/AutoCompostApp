@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:autocompost/app/ui/pages/maps/markers.dart';
 
 class MapsController extends ChangeNotifier{
 
@@ -28,6 +29,12 @@ class MapsController extends ChangeNotifier{
     _init();
   }
 
+  void onMapCreated(GoogleMapController controller){
+    setMarkersOnMap(controller);
+  }
+
+
+
   Future<void> _init() async {
     _gpsEnabled = await Geolocator.isLocationServiceEnabled();
     _loading = false;
@@ -40,15 +47,34 @@ class MapsController extends ChangeNotifier{
     notifyListeners();
   }
 
-  void onMapCreated(GoogleMapController controller){
-    //controller.setMapStyle();
-  }
-
   Future<void> turnOnGPS() => Geolocator.openLocationSettings();
-
   @override
   void dispose() {
     _gpsSubscription?.cancel();
     super.dispose();
   }
+
+
+  void setMarkersOnMap(GoogleMapController controller){
+
+    Marker marker;
+    for (var i = 0; i < 14; i++){
+      marker = Marker(
+        markerId: MarkerId('$i'),
+        position: listOfLatLngs[i],
+        // icon: BitmapDescriptor.,
+        infoWindow: InfoWindow(
+          title: title[i],
+          snippet: subtitle[i],
+        ),
+      );
+      _markers[MarkerId('$i')] = marker;
+      notifyListeners();
+    }
+
+  }
+
+
+
+
 }
