@@ -23,26 +23,19 @@ class RegisterPage extends StatelessWidget {
       builder: (_, controller){
         return Scaffold(
           backgroundColor: Colors.white,
-          appBar: AppBar(title: const Text('Back'),),
+          appBar: AppBar(
+              title: const Text('Back')),
           body: GestureDetector(
             onTap: ()=> FocusScope.of(context).unfocus(),
             child: Container(
               width: double.infinity,
-              padding: const EdgeInsets.all(15),
+              height: double.infinity,
               color: Colors.transparent,
               child: Form(
                 key: controller.formKey,
                 child: ListView(
+                  padding: const EdgeInsets.all(15),
                   children: [
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text("Register:",
-                          style: TextStyle(fontSize: 30, ),
-                        ),
-                      ),
-                    ),
                     CustomInputFiled(
                       label: "Name",
                       onChanged: controller.onNameChanged,
