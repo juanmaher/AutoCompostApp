@@ -6,16 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_meedu/meedu.dart';
 import 'package:flutter_meedu/ui.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class CommunityCompostPage extends StatefulWidget {
+  const CommunityCompostPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<CommunityCompostPage> createState() => _CommunityCompostPage();
 }
 
-class _HomePageState extends State<HomePage> {
-
-  final _controller = HomeController();
+class _CommunityCompostPage extends State<CommunityCompostPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -25,24 +23,23 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text("HOME PAGE"),
+            const Text("Composteras Comunitarias"),
             const SizedBox(height: 20),
             CupertinoButton(
               color: Colors.green,
-              child: const Text("sign out"),
-              onPressed: () async {
-                await Get.find<AuthenticationRepository>().signOut();
-                router.pushNamedAndRemoveUntil(Routes.LOGIN);
-              },
-            ),
-            const SizedBox(height: 20),
-            CupertinoButton(
-              color: Colors.green,
-              child: const Text("Composteras Comunitarias"),
+              child: const Text("maps"),
               onPressed: () {
-                router.pushNamed(Routes.COMMUNITY_COMPOST);
+                router.pushNamed(Routes.PERMISSIONS);
               },
             ),
+            const SizedBox(height: 20),
+            CupertinoButton(
+              color: Colors.green,
+              child: const Text("List"),
+              onPressed: () {
+                router.pushNamed(Routes.LIST);
+              },
+            )
           ],
         ),
       ),
