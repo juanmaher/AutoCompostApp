@@ -20,12 +20,17 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+          title: const Text('Home Page')),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text("HOME PAGE"),
+            IconButton(
+              icon: Image.asset('path/the_image.png'),
+              iconSize: 50,
+              onPressed: () {},
+            ),
             const SizedBox(height: 20),
             CupertinoButton(
               color: Colors.green,

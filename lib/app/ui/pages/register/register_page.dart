@@ -23,7 +23,7 @@ class RegisterPage extends StatelessWidget {
       builder: (_, controller){
         return Scaffold(
           backgroundColor: Colors.white,
-          appBar: AppBar(),
+          appBar: AppBar(title: const Text('Back'),),
           body: GestureDetector(
             onTap: ()=> FocusScope.of(context).unfocus(),
             child: Container(
@@ -32,8 +32,17 @@ class RegisterPage extends StatelessWidget {
               color: Colors.transparent,
               child: Form(
                 key: controller.formKey,
-                child: Column(
+                child: ListView(
                   children: [
+                    const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text("Register:",
+                          style: TextStyle(fontSize: 30, ),
+                        ),
+                      ),
+                    ),
                     CustomInputFiled(
                       label: "Name",
                       onChanged: controller.onNameChanged,
@@ -99,7 +108,7 @@ class RegisterPage extends StatelessWidget {
                     CupertinoButton(
                       color: Colors.green,
                       onPressed: () => sendRegisterForm(context),
-                      child: const Text("REGISTER"),
+                      child: const Text("SUMMIT"),
                     ),
                   ],
                 ),
