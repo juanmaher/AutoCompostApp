@@ -7,18 +7,63 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-          width: double.infinity,
-          child: Column(
+    return MaterialApp(
+      title: 'Mi compostera App',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Mi compostera App'),
+          actions: <Widget>[
+            Padding(
+                padding: const EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Image.asset('assets/images/logo_fiuba.png', scale: 0.5,),
+                )
+            ),
+          ],
+          backgroundColor: Colors.green,
+        ),
+        body: Center(
+        child: Column(
             children: [
+              Image.asset('assets/images/lhead.png', width: 300,),
+              const Padding (
+                padding: EdgeInsets.symmetric(vertical: 50),
+                child: Text("Mi compostera app",
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontFamily: 'titl_login',
+                      color: Colors.lightGreen),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 20),
+                child: Text("Ingresar:",
+                  style: TextStyle(fontSize: 30, ),
+                  ),
+                ),
               ElevatedButton(
+                 style: ElevatedButton.styleFrom(
+                   minimumSize: const Size(300, 40),
+                   textStyle: const TextStyle(fontSize: 20),
+                  ),
                   onPressed: () => router.pushNamed(
                       Routes.REGISTER,
+
+                  ),
+                  child: const Text("Log in")
+              ),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(300, 40),
+                    textStyle: const TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () => router.pushNamed(
+                    Routes.REGISTER,
+
                   ),
                   child: const Text("Sign up")
-              )
+              ),
             ],
           ),
         ),
