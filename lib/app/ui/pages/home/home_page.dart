@@ -34,7 +34,15 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 20),
             CupertinoButton(
               color: Colors.green,
-              child: const Text("sign out"),
+              child: const Text("Composteras Comunitarias"),
+              onPressed: () {
+                router.pushNamed(Routes.COMMUNITY_COMPOST);
+              },
+            ),
+            const SizedBox(height: 20),
+            CupertinoButton(
+              color: Colors.green,
+              child: const Text("Manual de Compostado"),
               onPressed: () async {
                 await Get.find<AuthenticationRepository>().signOut();
                 router.pushNamedAndRemoveUntil(Routes.LOGIN);
@@ -43,9 +51,10 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 20),
             CupertinoButton(
               color: Colors.green,
-              child: const Text("Composteras Comunitarias"),
-              onPressed: () {
-                router.pushNamed(Routes.COMMUNITY_COMPOST);
+              child: const Text("sign out"),
+              onPressed: () async {
+                await Get.find<AuthenticationRepository>().signOut();
+                router.pushNamedAndRemoveUntil(Routes.LOGIN);
               },
             ),
           ],
