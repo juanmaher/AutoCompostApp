@@ -48,6 +48,15 @@ class _HomePageState extends State<HomePage> {
                 router.pushNamed(Routes.COMMUNITY_COMPOST);
               },
             ),
+            const SizedBox(height: 20),
+            CupertinoButton(
+              color: Colors.green,
+              child: const Text("Mi Compostera"),
+              onPressed: () async {
+                await Get.find<AuthenticationRepository>().signOut();
+                router.pushNamedAndRemoveUntil(Routes.MY_AUTOCOMPOST);
+              },
+            ),
           ],
         ),
       ),

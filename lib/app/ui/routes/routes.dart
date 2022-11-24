@@ -3,6 +3,7 @@ abstract class Routes {
   static const LOGIN = '/login';
   static const REGISTER = '/register';
   static const HOME = '/home';
+  static const MY_AUTOCOMPOST = '/my_autcompost';
   static const PERMISSIONS = '/permissions';
   static const MAPS = '/maps';
   static const LIST = '/list';
