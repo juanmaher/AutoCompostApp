@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:autocompost/app/ui/pages/list/list_controller.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:autocompost/app/ui/pages/compost_manual/ManualOptionList.dart';
+import 'package:autocompost/app/ui/pages/compost_manual/ManualOptions.dart';
+import 'package:flutter_meedu/ui.dart';
+import '../../routes/routes.dart';
 
 class CompostManualPage extends StatefulWidget {
   const CompostManualPage({Key? key}) : super(key: key);
@@ -16,23 +16,28 @@ class _CompostManualPage extends State<CompostManualPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Manual de compostaje'),
+      appBar: AppBar(),
+      body: Center(
+      child: Column(
+         children: <Widget>[
+           Expanded(
+             child: GridView.builder(
+                 itemCount: manualOptions.length,
+                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                   crossAxisCount: 1,
+                   mainAxisSpacing: 10,
+                   childAspectRatio: 2 // Mas grande mas chico se hace
+                 ),
+                 itemBuilder: (context, index) {
+                   return ManualOptionList( manualOption: manualOptions[index]);
+                 }
+             ),
+           ),
+         ],
+        ),
       ),
-      body: buildList(),
     );
   }
-
-  Widget buildList() => ListView.builder(
-    itemCount: items.length,
-    itemBuilder: (context, index) {
-      final item = items[index];
-      return ListTile(
-
-      );
-    },
-  );
-
-
-
 }
+
+

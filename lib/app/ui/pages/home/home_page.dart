@@ -43,9 +43,8 @@ class _HomePageState extends State<HomePage> {
             CupertinoButton(
               color: Colors.green,
               child: const Text("Manual de Compostado"),
-              onPressed: () async {
-                await Get.find<AuthenticationRepository>().signOut();
-                router.pushNamedAndRemoveUntil(Routes.LOGIN);
+              onPressed: () {
+                router.pushNamed(Routes.COMPOST_MANUAL);
               },
             ),
             const SizedBox(height: 20),
