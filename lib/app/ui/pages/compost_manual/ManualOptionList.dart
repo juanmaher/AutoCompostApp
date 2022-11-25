@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:autocompost/app/ui/pages/compost_manual/ManualOptions.dart';
-import 'package:autocompost/app/utils/size_config.dart';
+import 'package:autocompost/app/ui/routes/routes.dart';
+import 'package:flutter_meedu/ui.dart';
 
 class ManualOptionList extends StatelessWidget{
   final ManualOptions manualOption;
@@ -13,7 +14,7 @@ class ManualOptionList extends StatelessWidget{
         aspectRatio: 1.65,
         child: GestureDetector(
           onTap: (){
-            print(manualOption.title);
+            router.pushNamed(manualOption.routePage);
           },
         child: Container(
           decoration: BoxDecoration(
@@ -31,7 +32,6 @@ class ManualOptionList extends StatelessWidget{
                 fontSize: 40,
                 color: Colors.grey[300],
             ),
-
           ),
          ),
         ),
