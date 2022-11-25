@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:autocompost/app/ui/pages/compost_manual/ManualOptionList.dart';
 import 'package:autocompost/app/ui/pages/compost_manual/ManualOptions.dart';
-import 'package:flutter_meedu/ui.dart';
-import '../../routes/routes.dart';
+
 
 class CompostManualPage extends StatefulWidget {
   const CompostManualPage({Key? key}) : super(key: key);

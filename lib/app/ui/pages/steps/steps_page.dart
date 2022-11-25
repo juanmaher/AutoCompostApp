@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
+import 'package:autocompost/app/ui/pages/steps/steps_component.dart';
+
 
 
 
@@ -12,26 +14,65 @@ class StepsPage extends StatefulWidget {
 
 class _StepsPage extends State<StepsPage> {
 
-  List<int> data = [
-    10,9,8,7,6,5,4,3,2,1
-  ];
+  final double width = 350;
 
   Widget _buildItemList(BuildContext context, int index){
-    if(index == data.length)
+    if(index == stepComponent.length)
       return Center(
         child: CircularProgressIndicator(),
       );
     return Container(
-      width: 300,
+      width: width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            color: Colors.yellow,
-            width: 300,
+            decoration: BoxDecoration(
+              color: stepComponent[index].color,
+              borderRadius: BorderRadius.circular(30),
+              image : DecorationImage(
+                image: AssetImage(stepComponent[index].imageSrc),
+                colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.08), BlendMode.dstATop),
+                fit: BoxFit.cover,
+              ),
+            ),
+            width: width,
             height: 600,
             child: Center(
-              child: Text('${data[index]}',style: TextStyle(fontSize: 50.0,color: Colors.black),),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    child: Text(stepComponent[index].title,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 40.0,
+                          fontFamily: "Caveat",
+                          fontWeight: FontWeight.w400
+                      ),
+                    ),
+                  ),
+                  Spacer(),
+                  Container(
+                    child: Text(stepComponent[index].description,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30.0,
+                          fontFamily: "Caveat",
+                          fontWeight: FontWeight.w400
+                      ),
+                    ),
+                  ),
+                  Spacer(),
+                  Container(
+                    child: Image.asset(
+                      stepComponent[index].imageIcon,
+                      height: 150.0,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -52,12 +93,9 @@ class _StepsPage extends State<StepsPage> {
             Expanded(
                 child: ScrollSnapList(
                   itemBuilder: _buildItemList,
-                  itemSize: 300,
+                  itemSize: width,
                   dynamicItemSize: true,
-                  onReachEnd: (){
-                    print('Done!');
-                  },
-                  itemCount: data.length, onItemFocus: (int ) {  },
+                  itemCount: stepComponent.length, onItemFocus: (int ) {  },
                 )
             ),
           ],
