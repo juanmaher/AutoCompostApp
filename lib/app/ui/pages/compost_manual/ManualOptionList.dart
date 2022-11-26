@@ -17,6 +17,7 @@ class ManualOptionList extends StatelessWidget{
             router.pushNamed(manualOption.routePage);
           },
         child: Container(
+          height: 1,
           decoration: BoxDecoration(
             color: manualOption.color,
             borderRadius: BorderRadius.circular(30),

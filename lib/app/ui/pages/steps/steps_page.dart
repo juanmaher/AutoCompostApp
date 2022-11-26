@@ -36,7 +36,6 @@ class _StepsPage extends State<StepsPage> {
                 fit: BoxFit.cover,
               ),
             ),
-            width: width,
             height: 600,
             child: Center(
               child: Column(

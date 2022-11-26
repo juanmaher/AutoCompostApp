@@ -52,6 +52,7 @@ dependencies:
   url_launcher: ^6.1.6
   flutter_svg: ^1.1.6
   scroll_snap_list: ^0.9.1
+  bordered_text: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +76,9 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/images/compostables/
+    - assets/images/no_compostables/
+
   fonts:
     - family: titl_login
       fonts:

@@ -20,18 +20,22 @@ class _CompostManualPage extends State<CompostManualPage> {
       child: Column(
          children: <Widget>[
            Expanded(
-             child: GridView.builder(
-                 itemCount: manualOptions.length,
-                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                   crossAxisCount: 1,
-                   mainAxisSpacing: 10,
-                   childAspectRatio: 2 // Mas grande mas chico se hace
-                 ),
-                 itemBuilder: (context, index) {
-                   return ManualOptionList( manualOption: manualOptions[index]);
-                 }
-             ),
+             child: Padding(
+              padding:
+                  EdgeInsets.symmetric(horizontal: 1, vertical: 1),
+               child: GridView.builder(
+                   itemCount: manualOptions.length,
+                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                     crossAxisCount: 1,
+                     mainAxisSpacing: 10,
+                     childAspectRatio: 2 // Mas grande mas chico se hace
+                   ),
+                   itemBuilder: (context, index) {
+                     return ManualOptionList( manualOption: manualOptions[index]);
+                   }
+               ),
            ),
+          ),
          ],
         ),
       ),

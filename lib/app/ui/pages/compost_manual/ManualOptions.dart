@@ -16,7 +16,6 @@ class ManualOptions {
       });
 }
 
-// Demo list
 List<ManualOptions> manualOptions = [
   ManualOptions(
     id: 1,
@@ -33,7 +32,7 @@ List<ManualOptions> manualOptions = [
     description: "Cook recipes for special occasions",
     imageSrc: "assets/images/compostera_1.jpg",
     color: Color(0xFF3F4C0B),
-    routePage: Routes.LIST,
+    routePage: Routes.COMPOSTABLES_THINGS,
   ),
 
   ManualOptions(
