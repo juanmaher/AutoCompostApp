@@ -20,23 +20,59 @@ class ManualOptionList extends StatelessWidget{
           height: 1,
           decoration: BoxDecoration(
             color: manualOption.color,
-            borderRadius: BorderRadius.circular(30),
-            image : DecorationImage(
+            borderRadius: BorderRadius.circular(18),
+          /*  image : DecorationImage(
               image: AssetImage(manualOption.imageSrc),
               colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.1), BlendMode.dstATop),
               fit: BoxFit.cover,
-            ),
+            ),*/
           ),
-          child: Center(
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        manualOption.title,
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        manualOption.description,
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.white54,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(width: 5),
+              AspectRatio(
+                aspectRatio: 0.71,
+                child: Image.asset(manualOption.imageSrc,
+                fit: BoxFit.fill,
+                  alignment: Alignment.centerLeft,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      );
+  }
+}
+/*
+* child: Center(
               child:Text(manualOption.title,
                 style: TextStyle(
                 fontSize: 40,
                 color: Colors.grey[300],
             ),
           ),
-         ),
-        ),
-      ),
-      );
-  }
-}
+         ),*/
