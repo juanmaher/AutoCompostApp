@@ -21,42 +21,49 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Home Page')),
+          title: Text('Home Page')),
       body: Center(
         child: ListView(
           //mainAxisSize: MainAxisSize.min,
-          children: [
+          padding: EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+          children: <Widget>[
             GestureDetector(
                 child: Container(
-                    height: 180,
-                    decoration: const BoxDecoration(
+                    height: 200,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(18),
                         color: Color(0xFF23631F),
                         image: DecorationImage(
                             image:AssetImage("assets/images/CompostIcon.png"),
-                            fit:BoxFit.cover
+                            fit:BoxFit.fill
                         ),
                     )
                 ),onTap:(){
               print("you clicked me");
             }
             ),
+            SizedBox(height: 20),
             GestureDetector(
                 child: Container(
-                    height: 180,
-                    decoration: const BoxDecoration(
+                    height: 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(18),
                       color: Color(0xFF18A95C),
                       image: DecorationImage(
                           image:AssetImage("assets/images/CompostComunit.png"),
-                          fit:BoxFit.cover
+                          fit:BoxFit.fill
                       ),
                     )
                 ),onTap:() {
               router.pushNamed(Routes.COMMUNITY_COMPOST);
-            },
-            ),GestureDetector(
+             },
+            ),
+            SizedBox(height: 20),
+            GestureDetector(
               child: Container(
-                  height: 180,
-                  decoration: const BoxDecoration(
+                  height: 200,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18),
                     color: Color(0xFF3E8C36),
                     image: DecorationImage(
                         image:AssetImage("assets/images/ComoCompost.png"),
@@ -64,19 +71,19 @@ class _HomePageState extends State<HomePage> {
                     ),
                   )
               ),onTap:() {
-
-            },
+              router.pushNamed(Routes.COMPOST_MANUAL);
+             },
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             CupertinoButton(
               color: Colors.green,
-              child: const Text("sign out"),
+              child: Text("sign out"),
               onPressed: () async {
                 await Get.find<AuthenticationRepository>().signOut();
                 router.pushNamedAndRemoveUntil(Routes.LOGIN);
               },
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
           ],
         ),
       ),

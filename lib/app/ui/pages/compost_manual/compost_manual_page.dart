@@ -22,7 +22,7 @@ class _CompostManualPage extends State<CompostManualPage> {
            Expanded(
              child: Padding(
               padding:
-                  EdgeInsets.symmetric(horizontal: 1, vertical: 1),
+                  EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                child: GridView.builder(
                    itemCount: manualOptions.length,
                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
