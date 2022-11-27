@@ -50,6 +50,9 @@ dependencies:
   provider: ^6.0.4
   location: ^4.2.0
   url_launcher: ^6.1.6
+  flutter_svg: ^1.1.6
+  scroll_snap_list: ^0.9.1
+  bordered_text: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +76,12 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/images/composteras_comunitarias/
+    - assets/images/compostables/
+    - assets/images/no_compostables/
+    - assets/images/manual_compost/
+
+
   fonts:
     - family: titl_login
       fonts:

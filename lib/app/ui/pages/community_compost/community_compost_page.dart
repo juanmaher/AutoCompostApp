@@ -1,9 +1,6 @@
-import 'package:autocompost/app/domain/repositories/auth_repository.dart';
-import 'package:autocompost/app/ui/pages/home/home_controller.dart';
 import 'package:autocompost/app/ui/routes/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_meedu/meedu.dart';
 import 'package:flutter_meedu/ui.dart';
 
 class CommunityCompostPage extends StatefulWidget {
