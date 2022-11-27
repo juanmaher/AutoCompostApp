@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:autocompost/app/ui/pages/maps/markers.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MapsController extends ChangeNotifier{
 
@@ -62,8 +63,11 @@ class MapsController extends ChangeNotifier{
       marker = Marker(
         markerId: MarkerId('$i'),
         position: listOfLatLngs[i],
-        // icon: BitmapDescriptor.,
+        //icon: BitmapDescriptor.,
         infoWindow: InfoWindow(
+          onTap: (){
+            _launchMap(directions[i]);
+          },
           title: title[i],
           snippet: subtitle[i],
         ),
@@ -72,6 +76,18 @@ class MapsController extends ChangeNotifier{
       notifyListeners();
     }
 
+  }
+
+
+  void _launchMap(String adr) async{
+
+    final Uri googleMapsUrl = Uri.parse(adr);
+
+    if(await canLaunchUrl(googleMapsUrl)){
+      await launchUrl(googleMapsUrl, mode: LaunchMode.externalNonBrowserApplication,);
+    } else {
+      throw 'No se pudo abrir';
+    }
   }
 
 

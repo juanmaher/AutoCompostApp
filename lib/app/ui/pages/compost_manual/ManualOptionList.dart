@@ -56,7 +56,7 @@ class ManualOptionList extends StatelessWidget{
               AspectRatio(
                 aspectRatio: 0.71,
                 child: Image.asset(manualOption.imageSrc,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
                   alignment: Alignment.centerLeft,
                 ),
               ),
