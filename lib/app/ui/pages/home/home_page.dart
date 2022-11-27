@@ -23,29 +23,49 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
           title: const Text('Home Page')),
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+        child: ListView(
+          //mainAxisSize: MainAxisSize.min,
           children: [
-            IconButton(
-              icon: Image.asset('path/the_image.png'),
-              iconSize: 50,
-              onPressed: () {},
+            GestureDetector(
+                child: Container(
+                    height: 180,
+                    decoration: const BoxDecoration(
+                        color: Color(0xFF23631F),
+                        image: DecorationImage(
+                            image:AssetImage("assets/images/CompostIcon.png"),
+                            fit:BoxFit.cover
+                        ),
+                    )
+                ),onTap:(){
+              print("you clicked me");
+            }
             ),
-            const SizedBox(height: 20),
-            CupertinoButton(
-              color: Colors.green,
-              child: const Text("Composteras Comunitarias"),
-              onPressed: () {
-                router.pushNamed(Routes.COMMUNITY_COMPOST);
-              },
-            ),
-            const SizedBox(height: 20),
-            CupertinoButton(
-              color: Colors.green,
-              child: const Text("Manual de Compostado"),
-              onPressed: () {
-                router.pushNamed(Routes.COMPOST_MANUAL);
-              },
+            GestureDetector(
+                child: Container(
+                    height: 180,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF18A95C),
+                      image: DecorationImage(
+                          image:AssetImage("assets/images/CompostComunit.png"),
+                          fit:BoxFit.cover
+                      ),
+                    )
+                ),onTap:() {
+              router.pushNamed(Routes.COMMUNITY_COMPOST);
+            },
+            ),GestureDetector(
+              child: Container(
+                  height: 180,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF3E8C36),
+                    image: DecorationImage(
+                        image:AssetImage("assets/images/ComoCompost.png"),
+                        fit:BoxFit.cover
+                    ),
+                  )
+              ),onTap:() {
+
+            },
             ),
             const SizedBox(height: 20),
             CupertinoButton(
@@ -56,6 +76,7 @@ class _HomePageState extends State<HomePage> {
                 router.pushNamedAndRemoveUntil(Routes.LOGIN);
               },
             ),
+            const SizedBox(height: 20),
           ],
         ),
       ),

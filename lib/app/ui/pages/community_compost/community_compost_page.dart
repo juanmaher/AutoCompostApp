@@ -15,28 +15,53 @@ class _CommunityCompostPage extends State<CommunityCompostPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+          title: const Text('Back')),
       body: Center(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
+          //crossAxisSize: CrossAx
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text("Composteras Comunitarias"),
-            const SizedBox(height: 20),
-            CupertinoButton(
-              color: Colors.green,
-              child: const Text("maps"),
-              onPressed: () {
-                router.pushNamed(Routes.PERMISSIONS);
-              },
+            const Padding (
+              padding: EdgeInsets.symmetric(vertical: 50),
+              child: Text("Composteras\nComunitarias",
+                style: TextStyle(
+
+                    fontSize: 30,
+                    fontFamily: 'titl_login',
+                    color: Colors.lightGreen),
+              ),
+            ),
+            const Padding (
+              padding: EdgeInsets.symmetric(vertical: 20),
+              child: Text("Show in:",
+                style: TextStyle(fontSize: 20,),
+              ),
             ),
             const SizedBox(height: 20),
-            CupertinoButton(
-              color: Colors.green,
-              child: const Text("List"),
-              onPressed: () {
-                router.pushNamed(Routes.LIST);
-              },
-            )
+            SizedBox(
+              width:240,
+              child:CupertinoButton(
+                color: Colors.green,
+                child: const Text("Google maps"),
+                onPressed: () {
+                  router.pushNamed(Routes.PERMISSIONS);
+                },
+              ),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              width:240,
+              child: CupertinoButton(
+                color: Colors.green,
+                child: const Text("List"),
+                onPressed: () {
+                  router.pushNamed(Routes.LIST);
+                },
+            ),
+            ),
           ],
         ),
       ),
