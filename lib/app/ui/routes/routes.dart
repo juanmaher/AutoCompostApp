@@ -10,5 +10,5 @@ abstract class Routes {
   static const COMPOST_MANUAL ='/compost_manual';
   static const STEPS ='/steps';
   static const COMPOSTABLES_THINGS ='/compostable_things';
-
+  static const COMPOST_TYPES ='/compost_types';
 }

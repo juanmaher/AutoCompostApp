@@ -1,3 +1,4 @@
+import 'package:autocompost/app/ui/pages/compost_types/compost_types_page.dart';
 import 'package:autocompost/app/ui/pages/home/home_page.dart';
 import 'package:autocompost/app/ui/pages/login/login_page.dart';
 import 'package:autocompost/app/ui/pages/maps/maps_page.dart';
@@ -25,5 +26,6 @@ Map<String, Widget Function(BuildContext)> appRoutes(){
     Routes.COMPOST_MANUAL:(_)=> const CompostManualPage(),
     Routes.STEPS:(_)=> const StepsPage(),
     Routes.COMPOSTABLES_THINGS:(_)=> const CompostableThingsPage(),
+    Routes.COMPOST_TYPES:(_)=> const CompostTypesPage(),
   };
 }
