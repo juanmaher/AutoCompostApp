@@ -50,7 +50,7 @@ List<ManualOptions> manualOptions = [
     description: "Algunos consejos que pueden ayudar a mejorar la calidad de tu compost",
     imageSrc: "assets/images/manual_compost/manualOption_04.png",
     color: Color(0xFF366403),
-    routePage: Routes.HOME,
+    routePage: Routes.TIPS,
   ),
 
   ManualOptions(

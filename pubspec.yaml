@@ -82,6 +82,7 @@ flutter:
     - assets/images/manual_compost/
     - assets/images/compost_types/
     - assets/images/steps/
+    - assets/images/tips/
 
 
   fonts:

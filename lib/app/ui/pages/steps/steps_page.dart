@@ -83,7 +83,7 @@ class _StepsPage extends State<StepsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Horizontal list',style: TextStyle(color: Colors.white),),
+        title: Text('Guia para compostar',style: TextStyle(color: Colors.white),),
         centerTitle: true,
       ),
       body: Container(
