@@ -21,6 +21,7 @@ mixin _$RegisterState {
   String get vPassword => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get lastname => throw _privateConstructorUsedError;
+  String? get composterId => throw _privateConstructorUsedError;
   bool get termsOk => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -40,6 +41,7 @@ abstract class $RegisterStateCopyWith<$Res> {
       String vPassword,
       String name,
       String lastname,
+      String? composterId,
       bool termsOk});
 }
 
@@ -61,6 +63,7 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
     Object? vPassword = null,
     Object? name = null,
     Object? lastname = null,
+    Object? composterId = freezed,
     Object? termsOk = null,
   }) {
     return _then(_value.copyWith(
@@ -84,6 +87,10 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
           ? _value.lastname
           : lastname // ignore: cast_nullable_to_non_nullable
               as String,
+      composterId: freezed == composterId
+          ? _value.composterId
+          : composterId // ignore: cast_nullable_to_non_nullable
+              as String?,
       termsOk: null == termsOk
           ? _value.termsOk
           : termsOk // ignore: cast_nullable_to_non_nullable
@@ -106,6 +113,7 @@ abstract class _$$_RegisterStateCopyWith<$Res>
       String vPassword,
       String name,
       String lastname,
+      String? composterId,
       bool termsOk});
 }
 
@@ -125,6 +133,7 @@ class __$$_RegisterStateCopyWithImpl<$Res>
     Object? vPassword = null,
     Object? name = null,
     Object? lastname = null,
+    Object? composterId = freezed,
     Object? termsOk = null,
   }) {
     return _then(_$_RegisterState(
@@ -148,6 +157,10 @@ class __$$_RegisterStateCopyWithImpl<$Res>
           ? _value.lastname
           : lastname // ignore: cast_nullable_to_non_nullable
               as String,
+      composterId: freezed == composterId
+          ? _value.composterId
+          : composterId // ignore: cast_nullable_to_non_nullable
+              as String?,
       termsOk: null == termsOk
           ? _value.termsOk
           : termsOk // ignore: cast_nullable_to_non_nullable
@@ -165,6 +178,7 @@ class _$_RegisterState implements _RegisterState {
       this.vPassword = '',
       this.name = '',
       this.lastname = '',
+      this.composterId,
       this.termsOk = false});
 
   @override
@@ -183,12 +197,14 @@ class _$_RegisterState implements _RegisterState {
   @JsonKey()
   final String lastname;
   @override
+  final String? composterId;
+  @override
   @JsonKey()
   final bool termsOk;
 
   @override
   String toString() {
-    return 'RegisterState(email: $email, password: $password, vPassword: $vPassword, name: $name, lastname: $lastname, termsOk: $termsOk)';
+    return 'RegisterState(email: $email, password: $password, vPassword: $vPassword, name: $name, lastname: $lastname, composterId: $composterId, termsOk: $termsOk)';
   }
 
   @override
@@ -204,12 +220,14 @@ class _$_RegisterState implements _RegisterState {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.lastname, lastname) ||
                 other.lastname == lastname) &&
+            (identical(other.composterId, composterId) ||
+                other.composterId == composterId) &&
             (identical(other.termsOk, termsOk) || other.termsOk == termsOk));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, email, password, vPassword, name, lastname, termsOk);
+  int get hashCode => Object.hash(runtimeType, email, password, vPassword, name,
+      lastname, composterId, termsOk);
 
   @JsonKey(ignore: true)
   @override
@@ -225,6 +243,7 @@ abstract class _RegisterState implements RegisterState {
       final String vPassword,
       final String name,
       final String lastname,
+      final String? composterId,
       final bool termsOk}) = _$_RegisterState;
 
   @override
@@ -237,6 +256,8 @@ abstract class _RegisterState implements RegisterState {
   String get name;
   @override
   String get lastname;
+  @override
+  String? get composterId;
   @override
   bool get termsOk;
   @override

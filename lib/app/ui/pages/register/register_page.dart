@@ -1,3 +1,4 @@
+import 'package:autocompost/app/ui/global_controllers/session_controller.dart';
 import 'package:autocompost/app/ui/global_widgets/custom_input_field.dart';
 import 'package:autocompost/app/ui/pages/register/controller/register_controller.dart';
 import 'package:autocompost/app/ui/pages/register/controller/register_state.dart';
@@ -10,7 +11,7 @@ import 'package:autocompost/app/utils/name_validator.dart';
 import 'package:flutter_meedu/ui.dart';
 
 final registerProvider = StateProvider<RegisterController, RegisterState>(
-    (_) => RegisterController(),
+    (_) => RegisterController(sessionProvider.read),
 );
 
 class RegisterPage extends StatelessWidget {
@@ -51,6 +52,18 @@ class RegisterPage extends StatelessWidget {
                       validator: (text) {
                         if(text == null) return null;
                         return isValidName(text)?null : "invalid last name";
+                      },
+                    ),
+                    const SizedBox(height: 15),
+                    CustomInputFiled(
+                      label: "Composter ID",
+                      onChanged: controller.onComposterIdChanged,
+                      validator: (text) {
+                        if(text == null) return null;
+                        if(text.trim().length>=6) {
+                          return null;
+                        }
+                        return "invalid composter id";
                       },
                     ),
                     const SizedBox(height: 15),
