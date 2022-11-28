@@ -31,7 +31,7 @@ class _ListPageState extends State<ListPage> {
           visualDensity: VisualDensity(vertical: 4),
           leading: CircleAvatar(
               radius: 30,
-              backgroundImage: AssetImage('assets/images/compostera_$index.jpg'),
+              backgroundImage: AssetImage('assets/images/composteras_comunitarias/compostera_$index.jpg'),
             ),
           title: Text(item),
           subtitle: Text(subtitle[index]),
