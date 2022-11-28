@@ -53,6 +53,10 @@ dependencies:
   flutter_svg: ^1.1.6
   scroll_snap_list: ^0.9.1
   bordered_text: ^2.0.0
+  percent_indicator: ^4.2.2
+  cloud_firestore: ^4.1.0
+  syncfusion_flutter_charts: ^20.3.58
+  fluttertoast: ^8.1.1
 
 dev_dependencies:
   flutter_test:
