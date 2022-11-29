@@ -37,6 +37,15 @@ List<ManualOptions> manualOptions = [
 
   ManualOptions(
     id: 3,
+    title: "¿Qué es el compost?",
+    description: "Explicación sobre qué es y cómo está compuesto",
+    imageSrc: "assets/images/manual_compost/manualOption_07.png",
+    color: Color(0xFF4E851F),
+    routePage: Routes.ABOUT_COMPOST,
+  ),
+
+  ManualOptions(
+    id: 4,
     title: "Tipos de Compost",
     description: "Explicación de los diferentes tipos de compost",
     imageSrc: "assets/images/manual_compost/manualOption_03.png",
@@ -45,7 +54,7 @@ List<ManualOptions> manualOptions = [
   ),
 
   ManualOptions(
-    id: 4,
+    id: 5,
     title: "Consejos                    ",
     description: "Algunos consejos que pueden ayudar a mejorar la calidad de tu compost",
     imageSrc: "assets/images/manual_compost/manualOption_04.png",
@@ -54,7 +63,7 @@ List<ManualOptions> manualOptions = [
   ),
 
   ManualOptions(
-    id: 5,
+    id: 6,
     title: "Mas información",
     description: "Información extra sobre el compostaje",
     imageSrc: "assets/images/manual_compost/manualOption_05.png",
