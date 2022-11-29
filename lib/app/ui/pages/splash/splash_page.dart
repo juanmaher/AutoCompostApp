@@ -1,10 +1,11 @@
+import 'package:autocompost/app/ui/global_controllers/session_controller.dart';
 import 'package:autocompost/app/ui/pages/splash/splash_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/meedu.dart';
 import 'package:flutter_meedu/ui.dart';
 
 final splashProvider = SimpleProvider(
-        (_) => SplashController(),
+        (_) => SplashController(sessionProvider.read),
 );
 
 class SplashPage extends StatelessWidget {

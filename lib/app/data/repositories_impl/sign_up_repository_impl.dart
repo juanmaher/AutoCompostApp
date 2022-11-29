@@ -1,6 +1,7 @@
 import 'package:autocompost/app/domain/inputs/sign_up.dart';
 import 'package:autocompost/app/domain/repositories/sign_up_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class SignUpRepositoryImpl implements SignUpRepository {
 
@@ -18,6 +19,16 @@ class SignUpRepositoryImpl implements SignUpRepository {
       await userCredential.user!.updateDisplayName(
         "${data.name} ${data.lastname}",
       );
+
+      //get reference
+      DatabaseReference ref = FirebaseDatabase.instance.ref().child('/users');
+      //build child
+      ref.child(userCredential.user!.uid).update({
+        'name': data.name,
+        'lastname': data.lastname,
+        'composter_id': data.composterId
+      },);
+
       return SignUpResponse(null, userCredential.user!);
     } on FirebaseAuthException catch(e) {
       return SignUpResponse(e.code, null);

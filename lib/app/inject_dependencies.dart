@@ -1,8 +1,11 @@
 import 'package:autocompost/app/data/repositories_impl/auth_repository_impl.dart';
+import 'package:autocompost/app/data/repositories_impl/bind_composter_repository_impl.dart';
 import 'package:autocompost/app/data/repositories_impl/sign_up_repository_impl.dart';
 import 'package:autocompost/app/domain/repositories/auth_repository.dart';
+import 'package:autocompost/app/domain/repositories/bind_composter_repository.dart';
 import 'package:autocompost/app/domain/repositories/sign_up_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_meedu/meedu.dart';
 
 // Inyecta los repo que se crean en dominio y en datos para que despues en la
@@ -13,5 +16,8 @@ void injectDependencies() {
   );
   Get.lazyPut<SignUpRepository>(
         () => SignUpRepositoryImpl(FirebaseAuth.instance),
+  );
+  Get.lazyPut<BindComposterRepository>(
+        () => BindComposterRepositoryImpl(FirebaseDatabase.instance),
   );
 }

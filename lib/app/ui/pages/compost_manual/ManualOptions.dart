@@ -28,10 +28,10 @@ List<ManualOptions> manualOptions = [
 
   ManualOptions(
     id: 2,
-    title: "Que compostar",
+    title: "Tipos de residuos",
     description: "Lista de residuos compostables y no compostables",
     imageSrc: "assets/images/manual_compost/manualOption_02.png",
-    color: Color(0xFF3F4C0B),
+    color: Color(0xFF189845),
     routePage: Routes.COMPOSTABLES_THINGS,
   ),
 
@@ -41,22 +41,22 @@ List<ManualOptions> manualOptions = [
     description: "Explicación de los diferentes tipos de compost",
     imageSrc: "assets/images/manual_compost/manualOption_03.png",
     color: Color(0xFF90A017),
-    routePage: Routes.MAPS,
+    routePage: Routes.COMPOST_TYPES,
   ),
 
   ManualOptions(
     id: 4,
-    title: "Consejos",
+    title: "Consejos                    ",
     description: "Algunos consejos que pueden ayudar a mejorar la calidad de tu compost",
     imageSrc: "assets/images/manual_compost/manualOption_04.png",
     color: Color(0xFF366403),
-    routePage: Routes.HOME,
+    routePage: Routes.TIPS,
   ),
 
   ManualOptions(
     id: 5,
     title: "Mas información",
-    description: "Infomración extra para sobre el compostaje",
+    description: "Información extra sobre el compostaje",
     imageSrc: "assets/images/manual_compost/manualOption_05.png",
     color: Color(0xFF24421D),
     routePage: Routes.STEPS,

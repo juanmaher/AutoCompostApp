@@ -1,3 +1,4 @@
+import 'package:autocompost/app/ui/global_controllers/session_controller.dart';
 import 'package:autocompost/app/ui/global_widgets/custom_input_field.dart';
 import 'package:autocompost/app/ui/pages/login/controller/login_controller.dart';
 import 'package:autocompost/app/ui/pages/login/utils/send_login_form.dart';
@@ -9,7 +10,7 @@ import 'package:flutter_meedu/meedu.dart';
 import 'package:flutter_meedu/ui.dart';
 
 final loginProvider = SimpleProvider(
-    (_) => LoginController(),
+    (_) => LoginController(sessionProvider.read),
 );
 
 class LoginPage extends StatelessWidget {

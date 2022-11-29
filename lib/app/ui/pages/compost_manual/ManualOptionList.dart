@@ -21,11 +21,6 @@ class ManualOptionList extends StatelessWidget{
           decoration: BoxDecoration(
             color: manualOption.color,
             borderRadius: BorderRadius.circular(18),
-          /*  image : DecorationImage(
-              image: AssetImage(manualOption.imageSrc),
-              colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.1), BlendMode.dstATop),
-              fit: BoxFit.cover,
-            ),*/
           ),
           child: Row(
             children: <Widget>[
@@ -40,6 +35,7 @@ class ManualOptionList extends StatelessWidget{
                           fontSize: 30,
                           color: Colors.white,
                         ),
+                          textAlign: TextAlign.start,
                       ),
                       Text(
                         manualOption.description,
@@ -47,16 +43,17 @@ class ManualOptionList extends StatelessWidget{
                           fontSize: 15,
                           color: Colors.white54,
                         ),
+                        textAlign: TextAlign.left,
                       ),
                     ],
                   ),
                 ),
               ),
-              SizedBox(width: 5),
+              //SizedBox(width: 0),
               AspectRatio(
-                aspectRatio: 0.71,
+                aspectRatio: 0.75,
                 child: Image.asset(manualOption.imageSrc,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
                   alignment: Alignment.centerLeft,
                 ),
               ),
@@ -67,12 +64,3 @@ class ManualOptionList extends StatelessWidget{
       );
   }
 }
-/*
-* child: Center(
-              child:Text(manualOption.title,
-                style: TextStyle(
-                fontSize: 40,
-                color: Colors.grey[300],
-            ),
-          ),
-         ),*/

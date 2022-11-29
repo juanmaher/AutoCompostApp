@@ -10,7 +10,8 @@ class RegisterState with _$RegisterState {
     @Default('') String vPassword,
     @Default('') String name,
     @Default('') String lastname,
-    @Default(false)bool termsOk,
+    String? composterId,
+    @Default(false) bool termsOk,
   }) = _RegisterState;
 
   static RegisterState get initialState => RegisterState();
