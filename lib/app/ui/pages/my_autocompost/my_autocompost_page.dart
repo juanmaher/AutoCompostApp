@@ -55,6 +55,8 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
   late int _humidity = 0;
   late bool _mezcladora = false;
   late bool _trituradora = false;
+  late int _dayOfProcess = 0;
+  late bool _fan = false;
 
   //Holds the data source of chart
   List<_ChartData> chartData = <_ChartData>[];
@@ -101,6 +103,18 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
         _trituradora = data5;
       });
     });
+    _database.child('/composters/$composterId/days').onValue.listen((event) {
+      final int data1 = (event.snapshot.value ?? 0) as int;
+      setState(() {
+        _dayOfProcess = data1;
+      });
+    });
+    _database.child('/composters/$composterId/fan').onValue.listen((event) {
+      final bool data1 = (event.snapshot.value ?? false) as bool;
+      setState(() {
+        _fan = data1;
+      });
+    });
   }
 
   Future<void> getDataFromFireStore() async {
@@ -113,10 +127,7 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
       chartData = list;
     });
   }
-
-  List<_ChartData> chartList = <_ChartData>[];
-  List<Item> _books = generateItems(1);
-
+  
   @override
   Widget build(BuildContext context) {
 
@@ -230,6 +241,7 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
           ),
           Column(
             children: [
+              // Temperatura
               SizedBox(
                 height: 100,
                 child: Stack(
@@ -278,6 +290,7 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
               ),
               const SizedBox(height: 20),
 
+              // Humedad
               SizedBox(
                 height: 100,
                 child: Stack(
@@ -325,6 +338,70 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
                 ),
               ),
               const SizedBox(height: 20),
+
+              // Días compostando
+              SizedBox(
+                height: 100,
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      height: size.height * 0.2 - 27,
+                      decoration: BoxDecoration(
+                        color: Colors.green.shade300,
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(12),
+                          topRight: Radius.circular(12),
+                          bottomLeft: Radius.circular(12),
+                          bottomRight: Radius.circular(12),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 30,
+                          right: 0,
+                          top: 0,
+                          bottom: 0,
+                        ),
+                        child: Row(
+                          children: [
+                            Text(
+                              _dayOfProcess.toString(),
+                              style: Theme.of(context).textTheme.headline2?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(width: 15),
+                            Text(
+                              'Días compostando',
+                              style: Theme.of(context).textTheme.headline6?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 30),
+
+              // Titulo
+              Center(
+                child: Text(
+                  'Control manual',
+                  style: Theme.of(context).textTheme.headline6?.copyWith(
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+
+              // Tritudora
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.resolveWith<Color?>(
@@ -352,6 +429,37 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
                 ),
               ),
               const SizedBox(height: 10),
+
+              // Ventilador
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                        (Set<MaterialState> states) {
+                      if (_fan != true) {
+                        return Colors.grey;
+                      }
+                      return Colors.green;
+                    },
+                  ),
+                ),
+                onPressed: () {
+                  if(_fan != true) {
+                    databaseComposterRef.update({'fan': true});
+                  } else {
+                    databaseComposterRef.update({'fan': false});
+                  }
+                },
+                child: Text(
+                  'Ventilador',
+                  style: Theme.of(context).textTheme.headline6?.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+
+              // Mezcladora
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.resolveWith<Color?>(
@@ -379,6 +487,7 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
                 ),
               ),
               const SizedBox(height: 20),
+
               // Gráficos
               Padding(
                 padding: const EdgeInsets.symmetric(
@@ -482,52 +591,6 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
       ),
     );
   }
-
-  Widget _buildPanel() {
-    return ExpansionPanelList(
-      expansionCallback: (int index, bool isExpanded) {
-        setState(() {
-          _books[index].isExpanded = !isExpanded;
-        });
-      },
-      children: _books.map<ExpansionPanel>((Item item) {
-        return ExpansionPanel(
-          canTapOnHeader: true,
-          headerBuilder: (BuildContext context, bool isExpanded) {
-            return ListTile(
-              title: Text(item.headerValue),
-            );
-          },
-          body: ListTile(
-            title: Text(item.expandedValue),
-          ),
-          isExpanded: item.isExpanded,
-        );
-      }).toList(),
-    );
-  }
-}
-
-// stores ExpansionPanel state information
-class Item {
-  Item({
-    required this.expandedValue,
-    required this.headerValue,
-    this.isExpanded = false,
-  });
-
-  String expandedValue;
-  String headerValue;
-  bool isExpanded;
-}
-
-List<Item> generateItems(int numberOfItems) {
-  return List.generate(numberOfItems, (int index) {
-    return Item(
-      headerValue: 'Book $index',
-      expandedValue: 'Details for Book $index goes here',
-    );
-  });
 }
 
 class _ChartData {
@@ -535,3 +598,10 @@ class _ChartData {
   final DateTime? x;
   final int? y;
 }
+
+class _CompostProcess {
+  _CompostProcess({this.startDay});
+  final DateTime? startDay;
+}
+
+
