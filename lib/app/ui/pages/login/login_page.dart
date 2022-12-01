@@ -22,9 +22,7 @@ class LoginPage extends StatelessWidget {
       provider: loginProvider,
       builder: (_, controller){
         return Scaffold(
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-            title: const Text('AutoCompost App'),),
+          backgroundColor: Colors.grey.shade100,
           body: SafeArea(
             child: GestureDetector(
               onTap: () => FocusScope.of(context).unfocus(),
@@ -32,34 +30,39 @@ class LoginPage extends StatelessWidget {
                 height: double.infinity,
                 color: Colors.transparent,
                 width: double.infinity,
-                padding: const EdgeInsets.all(15),
+                padding: const EdgeInsets.symmetric(horizontal: 35),
                 child: Form(
                   key: controller.formKey,
                   child: ListView (
                     children: [
                       const SizedBox(height: 20),
-                      Image.asset('assets/images/lhead.png', width: 300,),
-                      const Padding (
-                        padding: EdgeInsets.symmetric(vertical: 50),
-                        child: Text("Mi compostera app",
-                          style: TextStyle(
+                      const Center (
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 50.0,
+                          ),
+                          child: Text("AutoCompost",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
                               fontSize: 30,
-                              fontFamily: 'titl_login',
-                              color: Colors.lightGreen),
+                              fontFamily: 'dreamline',
+                              color: Colors.green,
+                            ),
+                          ),
                         ),
                       ),
                       CustomInputFiled(
-                        label: "Email",
+                        label: "Mail",
                         onChanged: controller.onEmailChanged,
                         inputType: TextInputType.emailAddress,
                         validator: (text) {
                           if(text == null) return null;
-                          return isValidEmail(text)?null : "invalid mail";
+                          return isValidEmail(text)?null : "Mail inválido";
                         },
                       ),
                       const SizedBox(height: 20),
                       CustomInputFiled(
-                        label: "Password",
+                        label: "Contraseña",
                         onChanged: controller.onPasswordChanged,
                         isPassword: true,
                         validator: (text) {
@@ -67,7 +70,7 @@ class LoginPage extends StatelessWidget {
                           if(text.trim().length>=6) {
                             return null;
                           }
-                          return "invalid password";
+                          return "Contraseña inválida";
                         },
                       ),
                       const SizedBox(height: 20),
@@ -76,7 +79,7 @@ class LoginPage extends StatelessWidget {
                           backgroundColor: Colors.green,
                         ),
                         onPressed: () => sendLoginForm(context),
-                        child: const Text("Sign in"),
+                        child: const Text("Inicia sesión"),
                       ),
                     ],
                   ),
@@ -90,7 +93,7 @@ class LoginPage extends StatelessWidget {
                 backgroundColor: Colors.green,
               ),
               onPressed: () => router.pushNamed(Routes.REGISTER),
-              child: const Text("Sign up"),
+              child: const Text("Registrate"),
             ),
           ],
         );

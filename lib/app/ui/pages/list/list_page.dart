@@ -17,7 +17,7 @@ class _ListPageState extends State<ListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Composteras comunitarias'),
+        title: const Text('Lista'),
       ),
       body: buildList(),
     );

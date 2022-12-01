@@ -1,3 +1,4 @@
+import 'package:autocompost/app/ui/pages/my_autocompost_login/my_autocompost_login_page.dart';
 import 'package:autocompost/app/ui/pages/register/register_page.dart';
 import 'package:autocompost/app/ui/routes/routes.dart';
 import 'package:autocompost/app/utils/composter_id_validator.dart';
@@ -12,23 +13,18 @@ Future <void> sendRegisterForm(BuildContext context) async {
   if(isValidForm) {
     final response = await controller.submit();
     if(response.error != null) {
-
+      Fluttertoast.showToast(
+          msg: "Registro inválido",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0,
+      );
     } else {
-      //final isValidComposterId = controller.validateComposterId();
-      //if (await isValidComposterId) {
-        controller.submit();
-        router.pushNamedAndRemoveUntil(Routes.HOME);
-      //} else {
-        //Fluttertoast.showToast(
-            //msg: "Invalid Composter ID",
-            //toastLength: Toast.LENGTH_SHORT,
-            //gravity: ToastGravity.CENTER,
-            //timeInSecForIosWeb: 1,
-            //backgroundColor: Colors.red,
-            //textColor: Colors.white,
-            //fontSize: 16.0
-        //);
-     // }
+      controller.submit();
+      router.pushNamedAndRemoveUntil(Routes.HOME);
     }
    }
 }

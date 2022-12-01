@@ -42,7 +42,7 @@ class _MyAutoCompostLoginPageState extends State<MyAutoCompostLoginPage> {
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
-            title: const Text('AutoCompost App'),
+            title: const Text('Registra tu compostera'),
           ),
           body: SafeArea(
             child: GestureDetector(

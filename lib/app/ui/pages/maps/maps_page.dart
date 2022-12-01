@@ -19,7 +19,7 @@ class _MapsPageState extends State<MapsPage> {
     return ChangeNotifierProvider<MapsController>(
       create: (_)=>MapsController(),
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(title: const Text('Mapa')),
         body: Selector<MapsController,bool>(
           selector: (_, controller) => controller.loading,
           builder: (context, loading, loadingWidget){

@@ -25,7 +25,7 @@ class RegisterPage extends StatelessWidget {
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
-              title: const Text('Back')),
+              title: const Text('Registrate')),
           body: GestureDetector(
             onTap: ()=> FocusScope.of(context).unfocus(),
             child: Container(
@@ -38,32 +38,20 @@ class RegisterPage extends StatelessWidget {
                   padding: const EdgeInsets.all(15),
                   children: [
                     CustomInputFiled(
-                      label: "Name",
+                      label: "Nombre",
                       onChanged: controller.onNameChanged,
                       validator: (text) {
                         if(text == null) return null;
-                        return isValidName(text)?null : "invalid name";
+                        return isValidName(text)?null : "Nombre inválido";
                       },
                     ),
                     const SizedBox(height: 15),
                     CustomInputFiled(
-                      label: "Last Name",
+                      label: "Apellido",
                       onChanged: controller.onLastNameChanged,
                       validator: (text) {
                         if(text == null) return null;
-                        return isValidName(text)?null : "invalid last name";
-                      },
-                    ),
-                    const SizedBox(height: 15),
-                    CustomInputFiled(
-                      label: "Composter ID",
-                      onChanged: controller.onComposterIdChanged,
-                      validator: (text) {
-                        if(text == null) return null;
-                        if(text.trim().length>=6) {
-                          return null;
-                        }
-                        return "invalid composter id";
+                        return isValidName(text)?null : "Apellido inválido";
                       },
                     ),
                     const SizedBox(height: 15),
@@ -73,12 +61,12 @@ class RegisterPage extends StatelessWidget {
                       onChanged: controller.onMailChanged,
                       validator: (text) {
                         if(text == null) return null;
-                        return isValidEmail(text)?null : "invalid mail";
+                        return isValidEmail(text)?null : "Mail inválido";
                       },
                     ),
                     const SizedBox(height: 15),
                     CustomInputFiled(
-                      label: "Password",
+                      label: "Contraseña",
                       onChanged: controller.onPasswordChanged,
                       isPassword: true,
                       validator: (text) {
@@ -86,7 +74,7 @@ class RegisterPage extends StatelessWidget {
                         if(text.trim().length>=6) {
                           return null;
                         }
-                        return "invalid password";
+                        return "Contraseña inválida";
                       },
                     ),
                     const SizedBox(height: 15),
@@ -94,27 +82,50 @@ class RegisterPage extends StatelessWidget {
                       builder: (_, watch,__) {
                         watch;
                         return CustomInputFiled(
-                          label: "Verification password",
+                          label: "Repetir contraseña",
                           onChanged: controller.onVPasswordChanged,
                           isPassword: true,
                           validator: (text) {
                             if(text == null) return null;
                             if(controller.state.password != text) {
-                              return "passwords don't match";
+                              return "Contraseñas no coincidentes";
                             }
                             if(text.trim().length>=6) {
                               return null;
                             }
-                            return "invalid password";
+                            return "Constraseña inválida";
                           },
                         );
                       },
                     ),
                     const SizedBox(height: 15),
+                    CustomInputFiled(
+                      label: "ID Compostera",
+                      onChanged: controller.onComposterIdChanged,
+                      validator: (text) {
+                        if(text == null) return null;
+                        if(text.trim().length>=6) {
+                          return null;
+                        }
+                        return "ID inválido";
+                      },
+                    ),
+                    const Text(
+                      'Campo no obligatorio',
+                      style: TextStyle(
+                        color: Colors.green,
+                      ),
+                    ),
+                    const SizedBox(height: 15),
                     CupertinoButton(
                       color: Colors.green,
                       onPressed: () => sendRegisterForm(context),
-                      child: const Text("SUMMIT"),
+                      child: const Text(
+                        "Ingresa",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ],
                 ),

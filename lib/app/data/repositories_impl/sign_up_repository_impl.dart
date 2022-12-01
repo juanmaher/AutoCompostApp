@@ -1,5 +1,6 @@
 import 'package:autocompost/app/domain/inputs/sign_up.dart';
 import 'package:autocompost/app/domain/repositories/sign_up_repository.dart';
+import 'package:autocompost/app/utils/composter_id_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
@@ -29,7 +30,16 @@ class SignUpRepositoryImpl implements SignUpRepository {
         'composter_id': data.composterId
       },);
 
-      return SignUpResponse(null, userCredential.user!);
+      if (data.composterId == null) {
+        return SignUpResponse(null, userCredential.user!);
+      }
+
+      if (await isValidComposterId(data.composterId.toString())) {
+        return SignUpResponse(null, userCredential.user!);
+      } else {
+        return SignUpResponse(null, null);
+      }
+
     } on FirebaseAuthException catch(e) {
       return SignUpResponse(e.code, null);
     }

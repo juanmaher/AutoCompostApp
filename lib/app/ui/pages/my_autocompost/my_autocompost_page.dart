@@ -5,6 +5,7 @@ import 'package:autocompost/app/ui/routes/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_meedu/ui.dart';
@@ -24,7 +25,7 @@ class _MyAutoCompostPageState extends State<MyAutoCompostPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AutoCompost'),
+        title: const Text('Mi Compostera'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -163,7 +164,7 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
                   child: Row(
                     children: <Widget>[
                       Text(
-                        'Mi Compostera',
+                        'Compostera $composterId',
                         style: Theme
                             .of(context)
                             .textTheme
@@ -584,7 +585,23 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
+
+              CupertinoButton(
+                color: Colors.green,
+                child: const Text(
+                  "Desvincular compostera",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                onPressed: () async {
+                  final String userUid = sessionProvider.read.user!.uid;
+                  _database.child('/users/$userUid').update({'composter_id': ''});
+                  router.pushNamedAndRemoveUntil(Routes.HOME);
+                },
+              ),
+              const SizedBox(height: 30),
             ],
           ),
         ],

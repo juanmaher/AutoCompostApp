@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-          title: Text('Home Page')),
+          title: const Text('AutoCompost')),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -61,12 +61,12 @@ class _HomePageState extends State<HomePage> {
                         right: 20,
                         bottom: 0,
                       ),
-                      height: size.height * 0.2 - 70,
+                      height: size.height * 0.2 - 50,
                       decoration: const BoxDecoration(
                           color: Colors.grey,
                           borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(36),
-                            bottomRight: Radius.circular(36),
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
                           )
                       ),
                       child: Row(
@@ -75,8 +75,9 @@ class _HomePageState extends State<HomePage> {
                               builder: (_, ref, __){
                                 final user = ref.watch(sessionProvider).user!;
                                 final String? name = user.displayName;
+                                final String msg = '¡Hola ${name ?? 'amigo'}!';
                                 return Text(
-                                  '¡Hola $name!',
+                                  msg,
                                   style: Theme
                                       .of(context)
                                       .textTheme
@@ -95,67 +96,106 @@ class _HomePageState extends State<HomePage> {
               ),
               ),
 
+              const SizedBox(height: 10),
               GestureDetector(
                   child: Container(
-                      height: 200,
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 15,
+                      vertical: 5,
+                    ),
+                    height: 200,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.green.shade300,
+                    ),
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 5,
+                      ),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(18),
-                          color: Color(0xFF23631F),
-                          image: DecorationImage(
-                              image:AssetImage("assets/images/CompostIcon.png"),
-                              fit:BoxFit.fill
-                          ),
-                      )
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.green.shade300,
+                        image: const DecorationImage(
+                          image:AssetImage("assets/images/CompostIcon.png"),
+                          fit:BoxFit.contain,
+                          opacity: 0.9,
+                        ),
+                    ),
+                    )
                   ),onTap:(){
                 if (composterId != '') {
-                  router.pushNamedAndRemoveUntil(Routes.MY_AUTOCOMPOST);
+                  router.pushNamed(Routes.MY_AUTOCOMPOST);
                 } else {
-                  router.pushNamedAndRemoveUntil(Routes.MY_AUTOCOMPOST_LOGIN);
+                  router.pushNamed(Routes.MY_AUTOCOMPOST_LOGIN);
                 }
               }
               ),
-              SizedBox(height: 20),
               GestureDetector(
                   child: Container(
-                      height: 200,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(18),
-                        color: Color(0xFF18A95C),
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 15,
+                      vertical: 5,
+                    ),
+                    height: 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.green.shade500,
+                    ),
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 5,
+                      ),
+                      decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image:AssetImage("assets/images/CompostComunit.png"),
-                            fit:BoxFit.fill
+                          image:AssetImage("assets/images/CompostComunit.png"),
+                          fit:BoxFit.contain,
+                          opacity: 0.9,
                         ),
-                      )
+                      ),
+                    ),
                   ),onTap:() {
                 router.pushNamed(Routes.COMMUNITY_COMPOST);
                },
               ),
-              SizedBox(height: 20),
               GestureDetector(
                 child: Container(
-                    height: 200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(18),
-                      color: Color(0xFF3E8C36),
-                      image: DecorationImage(
-                          image:AssetImage("assets/images/ComoCompost.png"),
-                          fit:BoxFit.cover
-                      ),
-                    )
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 5,
+                  ),
+                  height: 200,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.green.shade700,
+                    image: const DecorationImage(
+                      image:AssetImage("assets/images/ComoCompost.png"),
+                      fit:BoxFit.contain,
+                      alignment: Alignment.center,
+                      opacity: 0.9,
+                    ),
+                  )
                 ),onTap:() {
                 router.pushNamed(Routes.COMPOST_MANUAL);
                },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
+
               CupertinoButton(
                 color: Colors.green,
-                child: Text("sign out"),
+                child: const Text(
+                  "Sign out",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 onPressed: () async {
                   await Get.find<AuthenticationRepository>().signOut();
                   router.pushNamedAndRemoveUntil(Routes.LOGIN);
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
             ],
           ),
         ),

@@ -57,6 +57,7 @@ dependencies:
   cloud_firestore: ^4.1.0
   syncfusion_flutter_charts: ^20.3.58
   fluttertoast: ^8.1.1
+  firebase_messaging: ^14.1.2
 
 dev_dependencies:
   flutter_test:
@@ -96,6 +97,9 @@ flutter:
     - family: OpenSans
       fonts:
             - asset: assets/fonts/OpenSans-Regular.ttf
+    - family: dreamline
+      fonts:
+        - asset: assets/fonts/Dreamline2.ttf
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
