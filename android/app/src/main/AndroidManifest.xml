@@ -9,9 +9,8 @@
 
    <application
         android:usesCleartextTraffic="true"
-        android:label="autocompost"
-        android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:label="AutoCompost"
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"
