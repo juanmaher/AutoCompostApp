@@ -177,7 +177,7 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
 
-
+/*
               GestureDetector(
                 child: Container(
                   margin: const EdgeInsets.symmetric(
@@ -199,6 +199,63 @@ class _HomePageState extends State<HomePage> {
                 router.pushNamed(Routes.COMPOST_MANUAL);
                },
               ),
+              */
+
+              GestureDetector(
+                child: Container(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 5,
+                  ),
+                  height: 200,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.green.shade700,
+                  ),
+                  child: Row(
+                    children: [
+                        SizedBox(
+                        child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 10,
+                          //top: 10
+                        ),
+                        child: Image.asset('assets/images/Compost_ilustration_2.png',
+                          width: 170,
+                          height: 300,
+                          alignment: Alignment.center,
+                          //opacity: const AlwaysStoppedAnimation(.6),
+                            ),
+                          ),
+                        ),
+                      SizedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 10,
+                            bottom: 0
+                          ),
+                          child: Text(
+                            '¿Cómo\nCompostar?',
+                            style: Theme.of(context).textTheme.headline6?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'OpenSans',
+                              fontSize: 22,
+                            ),
+                              textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                onTap:() {
+                  router.pushNamed(Routes.COMPOST_MANUAL);
+                },
+              ),
+
+
+
               const SizedBox(height: 20),
 
               CupertinoButton(
