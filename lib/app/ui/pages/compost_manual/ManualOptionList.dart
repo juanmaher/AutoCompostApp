@@ -50,13 +50,16 @@ class ManualOptionList extends StatelessWidget{
                 ),
               ),
               //SizedBox(width: 0),
+
               AspectRatio(
                 aspectRatio: 0.75,
                 child: Image.asset(manualOption.imageSrc,
-                fit: BoxFit.contain,
+                  fit: BoxFit.contain,
                   alignment: Alignment.centerLeft,
+                    //opacity: AlwaysStoppedAnimation(0.6) ,
                 ),
               ),
+
             ],
           ),
         ),

@@ -14,6 +14,7 @@ import 'package:autocompost/app/ui/routes/routes.dart';
 import 'package:autocompost/app/ui/pages/community_compost/community_compost_page.dart';
 import 'package:autocompost/app/ui/pages/compost_manual/compost_manual_page.dart';
 import 'package:autocompost/app/ui/pages/steps/steps_page.dart';
+import 'package:autocompost/app/ui/pages/more_information/information_page.dart';
 import 'package:autocompost/app/ui/pages/compostable_things/compostable_things_page.dart';
 import 'package:flutter/widgets.dart';
 
@@ -35,5 +36,6 @@ Map<String, Widget Function(BuildContext)> appRoutes(){
     Routes.COMPOST_TYPES:(_)=> const CompostTypesPage(),
     Routes.TIPS:(_)=> const TipsPage(),
     Routes.ABOUT_COMPOST:(_)=> const CompostPage(),
+    Routes.MORE_INFORMATION:(_)=> const MoreInformationPage(),
   };
 }

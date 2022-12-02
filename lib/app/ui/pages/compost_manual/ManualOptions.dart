@@ -17,31 +17,32 @@ class ManualOptions {
 }
 
 List<ManualOptions> manualOptions = [
+
   ManualOptions(
     id: 1,
-    title: "Paso a Paso",
-    description: "Guia de pasos a seguir para realizar correctamente el proceso de compostado",
-    imageSrc: "assets/images/manual_compost/manualOption_01.png",
-    color: Color(0xFF65BD0D),
-    routePage: Routes.STEPS,
+    title: "¿Qué es el compost?",
+    description: "Explicación sobre qué es y cómo está compuesto",
+    imageSrc: "assets/images/manual_compost/manualOption_07.png",
+    color: Colors.green.shade400,
+    routePage: Routes.ABOUT_COMPOST,
   ),
 
   ManualOptions(
     id: 2,
-    title: "Tipos de residuos",
-    description: "Lista de residuos compostables y no compostables",
-    imageSrc: "assets/images/manual_compost/manualOption_02.png",
-    color: Color(0xFF189845),
-    routePage: Routes.COMPOSTABLES_THINGS,
+    title: "Paso a Paso",
+    description: "Guia de pasos a seguir para realizar correctamente el proceso de compostado",
+    imageSrc: "assets/images/manual_compost/manualOption_01.png",
+    color: Colors.green.shade500,
+    routePage: Routes.STEPS,
   ),
 
   ManualOptions(
     id: 3,
-    title: "¿Qué es el compost?",
-    description: "Explicación sobre qué es y cómo está compuesto",
-    imageSrc: "assets/images/manual_compost/manualOption_07.png",
-    color: Color(0xFF4E851F),
-    routePage: Routes.ABOUT_COMPOST,
+    title: "Tipos de residuos",
+    description: "Lista de residuos compostables y no compostables",
+    imageSrc: "assets/images/manual_compost/manualOption_02.png",
+    color: Colors.green.shade600,
+    routePage: Routes.COMPOSTABLES_THINGS,
   ),
 
   ManualOptions(
@@ -49,7 +50,7 @@ List<ManualOptions> manualOptions = [
     title: "Tipos de Compost",
     description: "Explicación de los diferentes tipos de compost",
     imageSrc: "assets/images/manual_compost/manualOption_03.png",
-    color: Color(0xFF90A017),
+    color: Colors.green.shade700,
     routePage: Routes.COMPOST_TYPES,
   ),
 
@@ -58,7 +59,7 @@ List<ManualOptions> manualOptions = [
     title: "Consejos                    ",
     description: "Algunos consejos que pueden ayudar a mejorar la calidad de tu compost",
     imageSrc: "assets/images/manual_compost/manualOption_04.png",
-    color: Color(0xFF366403),
+    color: Colors.green.shade800,
     routePage: Routes.TIPS,
   ),
 
@@ -67,7 +68,7 @@ List<ManualOptions> manualOptions = [
     title: "Mas información",
     description: "Información extra sobre el compostaje",
     imageSrc: "assets/images/manual_compost/manualOption_05.png",
-    color: Color(0xFF24421D),
-    routePage: Routes.STEPS,
+    color: Colors.green.shade900,
+    routePage: Routes.MORE_INFORMATION,
   ),
 ];

@@ -131,34 +131,53 @@ class _HomePageState extends State<HomePage> {
                 }
               }
               ),
+
+
               GestureDetector(
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 15,
-                      vertical: 5,
-                    ),
-                    height: 200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: Colors.green.shade500,
-                    ),
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 5,
-                      ),
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image:AssetImage("assets/images/CompostComunit.png"),
-                          fit:BoxFit.contain,
-                          opacity: 0.9,
+                child: Container(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 5,
+                  ),
+                  height: 200,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.green.shade500,
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 10,
+                            //top: 10
+                          ),
+                          child: Text(
+                            'Composteras\nComunitarias',
+                            style: Theme.of(context).textTheme.headline6?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'OpenSans',
+                              fontSize: 22,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),onTap:() {
-                router.pushNamed(Routes.COMMUNITY_COMPOST);
-               },
+                      Image.asset('assets/images/Compostera_comunitaria.png',
+                        width: 188,
+                        height: 400,
+                        alignment: Alignment.center,
+                        //opacity: const AlwaysStoppedAnimation(.6),
+                      ),
+                    ],
+                  ),
+                ),
+                onTap:() {
+                  router.pushNamed(Routes.COMMUNITY_COMPOST);
+                },
               ),
+
+
               GestureDetector(
                 child: Container(
                   margin: const EdgeInsets.symmetric(
