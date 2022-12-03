@@ -17,35 +17,60 @@ class _CompostTypesPage extends State<CompostTypesPage> {
       length: compostTypes.length,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Tipos de composteras',style: TextStyle(color: Colors.white),),
+          title: const Text('Tipos de composteras',
+            style: TextStyle(
+                color: Colors.white
+            ),
+          ),
           bottom: TabBar(
             isScrollable:true,
             tabs: [
               Tab(
-                child: Text(compostTypes[0].title,style: TextStyle(color: Colors.white,),),
+                child: Text(
+                  compostTypes[0].title,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ),
               Tab(
-                child: Text(compostTypes[1].title,style: TextStyle(color: Colors.white,),),
+                child: Text(compostTypes[1].title,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ),
               Tab(
-                child: Text(compostTypes[2].title,style: TextStyle(color: Colors.white,),),
+                child: Text(compostTypes[2].title,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ),
               Tab(
-                child: Text(compostTypes[3].title,style: TextStyle(color: Colors.white,),),
+                child: Text(compostTypes[3].title,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ),
               Tab(
-                child: Text(compostTypes[4].title,style: TextStyle(color: Colors.white,),),
+                child: Text(compostTypes[4].title,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ],
           ),
         ),
         body: TabBarView(
           children: <Widget>[
-              CompostTypesInfo( compostTypes: compostTypes[0]),
-              CompostTypesInfo( compostTypes: compostTypes[1]),
-              CompostTypesInfo( compostTypes: compostTypes[2]),
-              CompostTypesInfo( compostTypes: compostTypes[3]),
-              CompostTypesInfo( compostTypes: compostTypes[4]),
+              CompostTypesInfo(compostTypes: compostTypes[0]),
+              CompostTypesInfo(compostTypes: compostTypes[1]),
+              CompostTypesInfo(compostTypes: compostTypes[2]),
+              CompostTypesInfo(compostTypes: compostTypes[3]),
+              CompostTypesInfo(compostTypes: compostTypes[4]),
           ],
         ),
       ),

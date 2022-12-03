@@ -29,7 +29,8 @@ List<StepComponent> stepComponent = [
   StepComponent(
     id: 2,
     title: "2° Residuos orgánicos",
-    description: "Incorporá diariamente los residuos orgánicos vegetales de la cocina (yerba, café, cascaras de fruta, de verdura, fósforos usados, restos de comida, etc).",
+    description: "Incorporá diariamente los residuos orgánicos vegetales de la cocina (yerba, café, cascaras de fruta, de verdura, "
+        "fósforos usados, restos de comida, etc).",
     imageSrc: "assets/images/steps/step_02.jpg",
     imageIcon: "assets/images/steps/step_02.png",
     color: Color(0xFF3F4C0B),
@@ -56,7 +57,8 @@ List<StepComponent> stepComponent = [
   StepComponent(
     id: 5,
     title: "5° Maduración",
-    description: "Al llenar por segunda vez el módulo, retirá el compost del cajón de maduración y abri la compuerta para vertir el nuevo contenido en el cajón de maduración.",
+    description: "Al llenar por segunda vez el módulo, retirá el compost del cajón de maduración y abri la compuerta para vertir"
+        " el nuevo contenido en el cajón de maduración.",
     imageSrc: "assets/images/steps/step_05.jpg",
     imageIcon: "assets/images/steps/step_05.png",
     color: Color(0xFF24421D),

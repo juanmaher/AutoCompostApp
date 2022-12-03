@@ -37,7 +37,8 @@ List<Tips> tips = [
   Tips(
     id: 4,
     title: 'Mezclar repetidas veces',
-    subtitle: 'Para todos los compostajes, salvo el lombricompost, mientras que más lo mezcles mas oxigenación tendrá la mezcla y mas eficiente será su descomposición.',
+    subtitle: 'Para todos los compostajes, salvo el lombricompost, mientras que más lo mezcles mas oxigenación tendrá '
+        'la mezcla y mas eficiente será su descomposición.',
     imageSrc: "assets/images/tips/tips_04.png",
   ),
 
@@ -58,13 +59,15 @@ List<Tips> tips = [
   Tips(
     id: 7,
     title: 'Controlar los malos olores',
-    subtitle: 'Dado que es un proceso de descomposición pueden existir la generación de malos olores, sin embargo los fuertes malos olores indican la falta de oxigenación de la mezcla.',
+    subtitle: 'Dado que es un proceso de descomposición pueden existir la generación de malos olores, sin embargo los'
+        ' fuertes malos olores indican la falta de oxigenación de la mezcla.',
     imageSrc: "assets/images/tips/tips_07.png",
   ),
   Tips(
     id: 8,
     title: 'No dejar de agregar residuos',
-    subtitle: 'Para obtener una buena cantidad de compost, se deben agregar cada vez más residuos y mezclarlos con lo antiguos para que la degradación total sea más rápida.',
+    subtitle: 'Para obtener una buena cantidad de compost, se deben agregar cada vez más residuos y mezclarlos con lo '
+        'antiguos para que la degradación total sea más rápida.',
     imageSrc: "assets/images/tips/tips_08.png",
   ),
 

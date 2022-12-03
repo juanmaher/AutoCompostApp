@@ -71,7 +71,8 @@ class _StepsPage extends State<StepsPage> {
                         vertical: 10,
                         horizontal: 25,
                       ),
-                      child: Text(stepComponent[index].description,
+                      child: Text(
+                        stepComponent[index].description,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                             color: Colors.white,

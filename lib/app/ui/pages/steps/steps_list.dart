@@ -23,7 +23,10 @@ class StepComponentList extends StatelessWidget{
             borderRadius: BorderRadius.circular(30),
             image : DecorationImage(
               image: AssetImage(stepComponent.imageSrc),
-              colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.1), BlendMode.dstATop),
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.1),
+                  BlendMode.dstATop
+                ),
               fit: BoxFit.cover,
             ),
           ),

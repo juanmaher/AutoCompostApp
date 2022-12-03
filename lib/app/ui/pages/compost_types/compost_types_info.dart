@@ -13,7 +13,10 @@ class CompostTypesInfo extends StatelessWidget{
     return Container(
       child: Padding(
         padding:
-        EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+        EdgeInsets.symmetric(
+            horizontal: 5,
+            vertical: 5
+        ),
           child: ListView(
             children: <Widget>[
                 Text(

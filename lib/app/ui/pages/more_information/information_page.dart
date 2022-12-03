@@ -19,7 +19,11 @@ class _MoreInformationPage extends State<MoreInformationPage> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Información extra',style: TextStyle(color: Colors.white),),
+          title: Text('Información extra',
+            style: TextStyle(
+                color: Colors.white,
+            ),
+          ),
         ),
         body: Center(
           child: ListView.builder(
@@ -28,7 +32,9 @@ class _MoreInformationPage extends State<MoreInformationPage> {
               return Card(
                 child: ListTile(
                   title: Text(moreInformation[index].title,
-                      style: TextStyle(fontWeight: FontWeight.bold)
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                      ),
                   ),
                   subtitle: Text(moreInformation[index].subtitle) ,
                   leading: SizedBox(

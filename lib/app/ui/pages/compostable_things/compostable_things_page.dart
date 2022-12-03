@@ -19,16 +19,26 @@ class _CompostableThingsPage extends State<CompostableThingsPage> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Residuos',style: TextStyle(color: Colors.white),),
+            title: Text('Residuos',
+              style: TextStyle(
+                  color: Colors.white
+              ),
+            ),
             bottom: TabBar(
               tabs: [
               Tab(
-                child: Text('Compostables',style: TextStyle(color: Color(
-                    0xFF173100),),),
+                child: Text('Compostables',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ),
             Tab(
-              child: Text('No compostables',style: TextStyle(color: Color(
-                  0xFF640011),),),
+              child: Text('No compostables',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
             ),
             ],
           ),

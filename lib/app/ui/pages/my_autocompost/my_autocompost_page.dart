@@ -8,9 +8,12 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_meedu/ui.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+
+import '../../../../main.dart';
 
 class MyAutoCompostPage extends StatefulWidget {
   const MyAutoCompostPage({Key? key}) : super(key: key);
@@ -530,6 +533,20 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
                 onPressed: () {
                   if(_mezcladora != true) {
                     databaseComposterRef.update({'mezcladora': true});
+                    /*
+                    flutterLocalNotificationsPlugin.show(
+                        0,
+                        "Prendiste la mezcladora",
+                        "No te olvides de apagarla",
+                        NotificationDetails(
+                            android: AndroidNotificationDetails(channel.id, channel.name,
+                                channelDescription: channel.description,
+                                importance: Importance.high,
+                                color: Colors.blue,
+                                playSound: true,
+                                icon: '@mipmap/ic_launcher')));
+
+                     */
                   } else {
                     databaseComposterRef.update({'mezcladora': false});
                   }

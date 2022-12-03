@@ -30,10 +30,12 @@ class _CompostManualPage extends State<CompostManualPage> {
                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                      crossAxisCount: 1,
                      mainAxisSpacing: 10,
-                     childAspectRatio: 2 // Mas grande mas chico se hace
+                     childAspectRatio: 2
                    ),
                    itemBuilder: (context, index) {
-                     return ManualOptionList( manualOption: manualOptions[index]);
+                     return ManualOptionList(
+                         manualOption: manualOptions[index]
+                     );
                    }
                ),
            ),

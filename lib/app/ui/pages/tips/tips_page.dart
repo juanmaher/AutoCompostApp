@@ -18,7 +18,11 @@ class _TipsPage extends State<TipsPage> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Consejos para compostar',style: TextStyle(color: Colors.white),),
+          title: Text('Consejos para compostar',
+            style: TextStyle(
+                color: Colors.white,
+            ),
+          ),
         ),
          body: Center(
               child: ListView.builder(
@@ -27,7 +31,9 @@ class _TipsPage extends State<TipsPage> {
                   return Card(
                     child: ListTile(
                       title: Text(tips[index].title,
-                          style: TextStyle(fontWeight: FontWeight.bold)
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                          ),
                       ),
                       subtitle: Text(tips[index].subtitle) ,
                       leading: SizedBox(
