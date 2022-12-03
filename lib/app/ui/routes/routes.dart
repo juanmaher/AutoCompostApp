@@ -16,4 +16,7 @@ abstract class Routes {
   static const TIPS ='/tips';
   static const ABOUT_COMPOST ='/about_compost';
   static const MORE_INFORMATION='/more_information';
+  static const TRIVIA_MAIN ='/trivia';
+  static const TRIVIA_QUESTION ='/trivia_question';
+
 }

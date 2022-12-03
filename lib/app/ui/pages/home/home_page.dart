@@ -295,6 +295,51 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
 
+              GestureDetector(
+                child: Container(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 5,
+                  ),
+                  height: 200,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.green.shade500,
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 10,
+                            //top: 10
+                          ),
+                          child: Text(
+                            'Trivia               ',
+                            style: Theme.of(context).textTheme.headline6?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'OpenSans',
+                              fontSize: 22,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      Image.asset('assets/images/Compostera_comunitaria.png',
+                        width: 188,
+                        height: 400,
+                        alignment: Alignment.center,
+                        //opacity: const AlwaysStoppedAnimation(.6),
+                      ),
+                    ],
+                  ),
+                ),
+                onTap:() {
+                  router.pushNamed(Routes.TRIVIA_MAIN);
+                },
+              ),
+
               const SizedBox(height: 20),
 
               CupertinoButton(

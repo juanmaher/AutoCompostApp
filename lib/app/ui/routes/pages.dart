@@ -16,6 +16,8 @@ import 'package:autocompost/app/ui/pages/compost_manual/compost_manual_page.dart
 import 'package:autocompost/app/ui/pages/steps/steps_page.dart';
 import 'package:autocompost/app/ui/pages/more_information/information_page.dart';
 import 'package:autocompost/app/ui/pages/compostable_things/compostable_things_page.dart';
+import 'package:autocompost/app/ui/pages/trivia/main_trivia.dart';
+import 'package:autocompost/app/ui/pages/trivia_question/questions_trivia.dart';
 import 'package:flutter/widgets.dart';
 
 Map<String, Widget Function(BuildContext)> appRoutes(){
@@ -37,5 +39,7 @@ Map<String, Widget Function(BuildContext)> appRoutes(){
     Routes.TIPS:(_)=> const TipsPage(),
     Routes.ABOUT_COMPOST:(_)=> const CompostPage(),
     Routes.MORE_INFORMATION:(_)=> const MoreInformationPage(),
+    Routes.TRIVIA_MAIN:(_)=> const TriviaPage(),
+    Routes.TRIVIA_QUESTION:(_)=> const QuestionPage(),
   };
 }
