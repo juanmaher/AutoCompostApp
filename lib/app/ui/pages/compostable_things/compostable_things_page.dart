@@ -20,7 +20,6 @@ class _CompostableThingsPage extends State<CompostableThingsPage> {
         child: Scaffold(
           appBar: AppBar(
             title: Text('Residuos',style: TextStyle(color: Colors.white),),
-            centerTitle: true,
             bottom: TabBar(
               tabs: [
               Tab(

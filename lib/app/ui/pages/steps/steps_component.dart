@@ -19,7 +19,7 @@ class StepComponent {
 List<StepComponent> stepComponent = [
   StepComponent(
     id: 1,
-    title: "1° Añadir Secos",
+    title: "1° Añadir secos",
     description: "Cargar el módulo de la compostera con material seco (Pasto seco, hojas secas, viruta, papel o cartón trozado).",
     imageSrc: "assets/images/steps/step_01.jpg",
     imageIcon: "assets/images/steps/step_01.png",

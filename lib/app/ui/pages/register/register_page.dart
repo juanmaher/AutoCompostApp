@@ -1,5 +1,6 @@
 import 'package:autocompost/app/ui/global_controllers/session_controller.dart';
 import 'package:autocompost/app/ui/global_widgets/custom_input_field.dart';
+import 'package:autocompost/app/ui/global_widgets/dialogs/dialogs.dart';
 import 'package:autocompost/app/ui/pages/register/controller/register_controller.dart';
 import 'package:autocompost/app/ui/pages/register/controller/register_state.dart';
 import 'package:autocompost/app/ui/pages/register/utils/send_register_form.dart';
@@ -104,18 +105,30 @@ class RegisterPage extends StatelessWidget {
                       onChanged: controller.onComposterIdChanged,
                       validator: (text) {
                         if(text == null) return null;
-                        if(text.trim().length>=6) {
+                        if(text.trim().length >= 6 || text.trim().isEmpty) {
                           return null;
                         }
                         return "ID inválido";
                       },
                     ),
-                    const Text(
-                      'Campo no obligatorio',
-                      style: TextStyle(
-                        color: Colors.green,
+                    GestureDetector(
+                      child: const Text(
+                        'Más información',
+                        style: TextStyle(
+                          color: Colors.green,
+                        ),
                       ),
+                      onTap: () {
+                        Dialogs.alert(
+                          context,
+                          title: "ID Compostera",
+                          content: "Este campo debe ser llenado con el número de serie de la compostera que ha comprado, "
+                              "el cual se puede encontrar en su etiqueta identificatoria. Si usted no ha adquirido una compostera aún, "
+                              "no complete este campo.",
+                        );
+                      },
                     ),
+
                     const SizedBox(height: 15),
                     CupertinoButton(
                       color: Colors.green,

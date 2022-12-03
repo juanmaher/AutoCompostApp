@@ -17,8 +17,7 @@ class _CompostTypesPage extends State<CompostTypesPage> {
       length: compostTypes.length,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Tipos de composteras',style: TextStyle(color: Colors.white),),
-          centerTitle: true,
+          title: const Text('Tipos de composteras',style: TextStyle(color: Colors.white),),
           bottom: TabBar(
             isScrollable:true,
             tabs: [

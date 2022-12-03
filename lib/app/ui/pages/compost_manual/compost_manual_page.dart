@@ -15,7 +15,9 @@ class _CompostManualPage extends State<CompostManualPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('Aprende'),
+      ),
       body: Center(
       child: Column(
          children: <Widget>[
@@ -25,7 +27,7 @@ class _CompostManualPage extends State<CompostManualPage> {
                   EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                child: GridView.builder(
                    itemCount: manualOptions.length,
-                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                      crossAxisCount: 1,
                      mainAxisSpacing: 10,
                      childAspectRatio: 2 // Mas grande mas chico se hace

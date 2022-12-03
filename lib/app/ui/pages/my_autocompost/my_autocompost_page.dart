@@ -59,8 +59,23 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
   late int _dayOfProcess = 0;
   late bool _fan = false;
 
+
   //Holds the data source of chart
   List<_ChartData> chartData = <_ChartData>[];
+  final TooltipBehavior _tooltipBehaviorTemperature = TooltipBehavior(enable: true);
+  final TooltipBehavior _tooltipBehaviorHumidity = TooltipBehavior(enable: true);
+  final ZoomPanBehavior _zoomPanBehaviorTemperature = ZoomPanBehavior(
+    // Enables pinch zooming
+    enablePinching: true,
+    zoomMode: ZoomMode.xy,
+    enablePanning: true,
+  );
+  final ZoomPanBehavior _zoomPanBehaviorHumidity = ZoomPanBehavior(
+    // Enables pinch zooming
+    enablePinching: true,
+    zoomMode: ZoomMode.xy,
+    enablePanning: true,
+  );
 
   @override
   void initState() {
@@ -154,12 +169,20 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
                     bottom: 20,
                   ),
                   height: size.height * 0.2 - 27,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Colors.grey,
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(36),
                       bottomRight: Radius.circular(36),
-                    )
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.3),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3), // changes position of shadow
+                      ),
+                    ],
                   ),
                   child: Row(
                     children: <Widget>[
@@ -245,48 +268,60 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
               // Temperatura
               SizedBox(
                 height: 100,
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      height: size.height * 0.2 - 27,
-                      decoration: BoxDecoration(
-                        color: Colors.red.shade300,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          topRight: Radius.circular(12),
-                          bottomLeft: Radius.circular(12),
-                          bottomRight: Radius.circular(12),
-                        ),
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.red.shade300,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.3),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3), // changes position of shadow
                       ),
-                      child: ListView(
-                        padding: const EdgeInsets.only(
-                          left: 30,
-                          right: 0,
-                          top: 20,
-                          bottom: 20,
-                        ),
-                        children: [
-                          Text(
-                            'Temperatura',
-                            style: Theme.of(context).textTheme.headline6?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            'Actual: $_temperature ºC',
-                            style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                        ],
-                      ),
+                    ],
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(12),
+                      topRight: Radius.circular(12),
+                      bottomLeft: Radius.circular(12),
+                      bottomRight: Radius.circular(12),
                     ),
-                  ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 30,
+                      right: 0,
+                      top: 20,
+                      bottom: 20,
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              'Temperatura',
+                              style: Theme.of(context).textTheme.headline6?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          children: [
+                            Text(
+                              'Actual: $_temperature ºC',
+                              style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
@@ -294,48 +329,60 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
               // Humedad
               SizedBox(
                 height: 100,
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      height: size.height * 0.2 - 27,
-                      decoration: BoxDecoration(
-                        color: Colors.blue.shade300,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          topRight: Radius.circular(12),
-                          bottomLeft: Radius.circular(12),
-                          bottomRight: Radius.circular(12),
-                        ),
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.blue.shade300,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.3),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3), // changes position of shadow
                       ),
-                      child: ListView(
-                        padding: const EdgeInsets.only(
-                          left: 30,
-                          right: 0,
-                          top: 20,
-                          bottom: 20,
-                        ),
-                        children: [
-                          Text(
-                            'Humedad',
-                            style: Theme.of(context).textTheme.headline6?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            'Actual: $_humidity %',
-                            style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                        ],
-                      ),
+                    ],
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(12),
+                      topRight: Radius.circular(12),
+                      bottomLeft: Radius.circular(12),
+                      bottomRight: Radius.circular(12),
                     ),
-                  ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 30,
+                      right: 0,
+                      top: 20,
+                      bottom: 20,
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              'Humedad',
+                              style: Theme.of(context).textTheme.headline6?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          children: [
+                            Text(
+                              'Actual: $_humidity %',
+                              style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
@@ -350,6 +397,14 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
                       height: size.height * 0.2 - 27,
                       decoration: BoxDecoration(
                         color: Colors.green.shade300,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.3),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: Offset(0, 3), // changes position of shadow
+                          ),
+                        ],
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(12),
                           topRight: Radius.circular(12),
@@ -530,12 +585,15 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
                               )
                           )
                       ),
+                      tooltipBehavior:  _tooltipBehaviorTemperature,
+                      zoomPanBehavior: _zoomPanBehaviorTemperature,
                       series: <ChartSeries<_ChartData, DateTime>>[
                         LineSeries<_ChartData, DateTime>(
-                            dataSource: chartData,
-                            xValueMapper: (_ChartData data, _) => data.x,
-                            yValueMapper: (_ChartData data, _) => data.y,
-                            pointColorMapper: (_ChartData data, _) => Colors.green
+                          dataSource: chartData,
+                          xValueMapper: (_ChartData data, _) => data.x,
+                          yValueMapper: (_ChartData data, _) => data.y,
+                          pointColorMapper: (_ChartData data, _) => Colors.green,
+                          enableTooltip: true,
                         ),
                       ],
                     ),
@@ -561,7 +619,6 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
                           ),
                         ),
                         minorTicksPerInterval:2,
-
                       ),
                       primaryYAxis: NumericAxis(
                         title: AxisTitle(
@@ -573,12 +630,15 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
                         ),
                         visibleMinimum: 0,
                       ),
+                      tooltipBehavior:  _tooltipBehaviorHumidity,
+                      zoomPanBehavior: _zoomPanBehaviorHumidity,
                       series: <ChartSeries<_ChartData, DateTime>>[
                         LineSeries<_ChartData, DateTime>(
-                            dataSource: chartData,
-                            xValueMapper: (_ChartData data, _) => data.x,
-                            yValueMapper: (_ChartData data, _) => data.y,
-                            pointColorMapper: (_ChartData data, _) => Colors.green
+                          dataSource: chartData,
+                          xValueMapper: (_ChartData data, _) => data.x,
+                          yValueMapper: (_ChartData data, _) => data.y,
+                          pointColorMapper: (_ChartData data, _) => Colors.green,
+                          enableTooltip: true,
                         ),
                       ],
                     ),

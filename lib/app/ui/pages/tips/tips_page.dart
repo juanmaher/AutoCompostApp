@@ -18,8 +18,7 @@ class _TipsPage extends State<TipsPage> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Tips para compostar',style: TextStyle(color: Colors.white),),
-          centerTitle: true,
+          title: Text('Consejos para compostar',style: TextStyle(color: Colors.white),),
         ),
          body: Center(
               child: ListView.builder(

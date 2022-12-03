@@ -35,8 +35,16 @@ class _CommunityCompostPage extends State<CommunityCompostPage> {
                       bottom: 0,
                     ),
                     height: size.height * 0.2 - 30,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                         color: Colors.grey,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.3),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: Offset(0, 3), // changes position of shadow
+                          ),
+                        ],
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(20),
                           bottomRight: Radius.circular(20),
@@ -65,11 +73,11 @@ class _CommunityCompostPage extends State<CommunityCompostPage> {
                 ],
               ),
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 40),
 
             GestureDetector(
               child: SizedBox(
-                height: 200,
+                height: 180,
                 child: Stack(
                   children: <Widget>[
                     Container(
@@ -77,9 +85,15 @@ class _CommunityCompostPage extends State<CommunityCompostPage> {
                       height: size.height * 0.2,
                       decoration: BoxDecoration(
                         color: Colors.green.shade300,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.3),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: Offset(0, 3), // changes position of shadow
+                          ),
+                        ],
                         borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          topRight: Radius.circular(12),
                           bottomLeft: Radius.circular(12),
                           bottomRight: Radius.circular(12),
                         ),
@@ -88,22 +102,22 @@ class _CommunityCompostPage extends State<CommunityCompostPage> {
                         children: [
                           Image.asset('assets/images/maps.png',
                             fit: BoxFit.fitWidth,
-                            height: 70,
+                            height: 80,
                             alignment: Alignment.center,
                             opacity: const AlwaysStoppedAnimation(.6),
                           ),
                           SizedBox(
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                left: 30,
-                                top: 20
+                                left: 25,
+                                top: 25
                               ),
                               child: Text(
                                 'Mapa',
                                 style: Theme.of(context).textTheme.headline6?.copyWith(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 30,
+                                  fontSize: 25,
                                 ),
                               ),
                             ),
@@ -130,9 +144,15 @@ class _CommunityCompostPage extends State<CommunityCompostPage> {
                       height: size.height * 0.2,
                       decoration: BoxDecoration(
                         color: Colors.green.shade600,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.3),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: Offset(0, 3), // changes position of shadow
+                          ),
+                        ],
                         borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          topRight: Radius.circular(12),
                           bottomLeft: Radius.circular(12),
                           bottomRight: Radius.circular(12),
                         ),
@@ -141,22 +161,22 @@ class _CommunityCompostPage extends State<CommunityCompostPage> {
                         children: [
                           Image.asset('assets/images/compostera_titulo.jpg',
                             fit: BoxFit.fitWidth,
-                            height: 70,
+                            height: 80,
                             alignment: Alignment.center,
                             opacity: const AlwaysStoppedAnimation(.6),
                           ),
                           SizedBox(
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                  left: 30,
-                                  top: 20
+                                  left: 25,
+                                  top: 25
                               ),
                               child: Text(
                                 'Lista',
                                 style: Theme.of(context).textTheme.headline6?.copyWith(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 30,
+                                  fontSize: 25,
                                 ),
                               ),
                             ),

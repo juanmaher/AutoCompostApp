@@ -29,7 +29,7 @@ List<ManualOptions> manualOptions = [
 
   ManualOptions(
     id: 2,
-    title: "Paso a Paso",
+    title: "Paso a paso",
     description: "Guia de pasos a seguir para realizar correctamente el proceso de compostado",
     imageSrc: "assets/images/manual_compost/manualOption_01.png",
     color: Colors.green.shade500,
@@ -47,7 +47,7 @@ List<ManualOptions> manualOptions = [
 
   ManualOptions(
     id: 4,
-    title: "Tipos de Compost",
+    title: "Tipos de composteras",
     description: "Explicación de los diferentes tipos de compost",
     imageSrc: "assets/images/manual_compost/manualOption_03.png",
     color: Colors.green.shade700,
@@ -65,7 +65,7 @@ List<ManualOptions> manualOptions = [
 
   ManualOptions(
     id: 6,
-    title: "Mas información",
+    title: "Más información",
     description: "Información extra sobre el compostaje",
     imageSrc: "assets/images/manual_compost/manualOption_05.png",
     color: Colors.green.shade900,

@@ -26,20 +26,20 @@ class ManualOptionList extends StatelessWidget{
             children: <Widget>[
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Column(
+                  padding: const EdgeInsets.all(20),
+                  child: ListView(
                     children: <Widget>[
                       Text(
                         manualOption.title,
-                        style: TextStyle(
-                          fontSize: 30,
+                        style: const TextStyle(
+                          fontSize: 28,
                           color: Colors.white,
                         ),
-                          textAlign: TextAlign.start,
+                          textAlign: TextAlign.left,
                       ),
                       Text(
                         manualOption.description,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 15,
                           color: Colors.white54,
                         ),

@@ -1,3 +1,4 @@
+import 'package:autocompost/app/ui/global_widgets/dialogs/progress_dialog.dart';
 import 'package:autocompost/app/ui/pages/my_autocompost_login/my_autocompost_login_page.dart';
 import 'package:autocompost/app/ui/pages/register/register_page.dart';
 import 'package:autocompost/app/ui/routes/routes.dart';
@@ -11,7 +12,9 @@ Future <void> sendRegisterForm(BuildContext context) async {
   final isValidForm = controller.formKey.currentState!.validate();
 
   if(isValidForm) {
+    ProgressDialog.show(context);
     final response = await controller.submit();
+    router.pop();
     if(response.error != null) {
       Fluttertoast.showToast(
           msg: "Registro inválido",

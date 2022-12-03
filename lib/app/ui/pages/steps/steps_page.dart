@@ -14,14 +14,15 @@ class StepsPage extends StatefulWidget {
 
 class _StepsPage extends State<StepsPage> {
 
-  final double width = 350;
+  final double width = 325;
 
   Widget _buildItemList(BuildContext context, int index){
-    if(index == stepComponent.length)
-      return Center(
+    if(index == stepComponent.length) {
+      return const Center(
         child: CircularProgressIndicator(),
       );
-    return Container(
+    }
+    return SizedBox(
       width: width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -29,7 +30,7 @@ class _StepsPage extends State<StepsPage> {
           Container(
             decoration: BoxDecoration(
               color: stepComponent[index].color,
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(20),
               image : DecorationImage(
                 image: AssetImage(stepComponent[index].imageSrc),
                 colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.08), BlendMode.dstATop),
@@ -37,40 +38,51 @@ class _StepsPage extends State<StepsPage> {
               ),
             ),
             height: 600,
-            child: Center(
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    child: Text(stepComponent[index].title,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 40.0,
-                          fontFamily: "Caveat",
-                          fontWeight: FontWeight.w400
+
+            child: Container(
+              decoration: BoxDecoration(
+                image : DecorationImage(
+                  image: AssetImage(stepComponent[index].imageIcon),
+                  opacity: 0.2,
+                ),
+              ),
+
+              child: Center(
+                child: ListView(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 40,
+                      ),
+                      child: Text(stepComponent[index].title,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 35,
+                            fontFamily: "Caveat",
+                            fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  Spacer(),
-                  Container(
-                    child: Text(stepComponent[index].description,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30.0,
-                          fontFamily: "Caveat",
-                          fontWeight: FontWeight.w400
+                    const SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 25,
+                      ),
+                      child: Text(stepComponent[index].description,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontFamily: "Caveat",
+                            fontWeight: FontWeight.w400
+                        ),
                       ),
                     ),
-                  ),
-                  Spacer(),
-                  Container(
-                    child: Image.asset(
-                      stepComponent[index].imageIcon,
-                      height: 150.0,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -83,8 +95,7 @@ class _StepsPage extends State<StepsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Guia para compostar',style: TextStyle(color: Colors.white),),
-        centerTitle: true,
+        title: Text('Guía para compostar',style: TextStyle(color: Colors.white),),
       ),
       body: Container(
         child: Column(

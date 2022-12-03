@@ -5,6 +5,7 @@ import 'package:flutter_meedu/meedu.dart';
 class SessionController extends SimpleNotifier {
 
   User? _user;
+
   User? get user => _user;
 
   final _auth = Get.find<AuthenticationRepository>();
@@ -24,3 +25,7 @@ final sessionProvider = SimpleProvider(
     (_) => SessionController(),
     autoDispose: false,
 );
+
+class UserData {
+
+}

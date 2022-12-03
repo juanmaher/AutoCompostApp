@@ -16,7 +16,7 @@ class _CompostPageState extends State<CompostPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Atrás')),
+          title: const Text('¿Qué es el compost?')),
       body: Center(
         child: ListView(
           //mainAxisSize: MainAxisSize.min,
