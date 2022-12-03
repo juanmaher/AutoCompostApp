@@ -2,9 +2,12 @@ import 'package:autocompost/app/domain/repositories/auth_repository.dart';
 import 'package:autocompost/app/ui/global_controllers/session_controller.dart';
 import 'package:autocompost/app/ui/pages/home/home_controller.dart';
 import 'package:autocompost/app/ui/routes/routes.dart';
+import 'package:autocompost/main.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_meedu/meedu.dart';
 import 'package:flutter_meedu/ui.dart';
 
@@ -25,6 +28,27 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message){
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      if(notification != null && android != null){
+        flutterLocalNotificationsPlugin.show(
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          NotificationDetails(
+            android:  AndroidNotificationDetails(
+              channel.id,
+              channel.name,
+              color: Colors.green,
+              playSound: true,
+              icon:  '@mipmap/ic_launchers'
+            ),
+          )
+        );
+      }
+    });
 
     _getComposterId();
     _getUserName();
