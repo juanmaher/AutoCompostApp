@@ -27,7 +27,7 @@ class SignUpRepositoryImpl implements SignUpRepository {
       ref.child(userCredential.user!.uid).update({
         'name': data.name,
         'lastname': data.lastname,
-        'composter_id': data.composterId
+        'composters_ids/${data.composterId}': data.composterId,
       },);
 
       if (data.composterId == null) {
