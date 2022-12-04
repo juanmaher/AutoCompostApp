@@ -230,7 +230,7 @@ class _HomePageState extends State<HomePage> {
                             height: size.height*0.2,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
-                              color: Colors.green.shade500,
+                              color: Colors.green.shade400,
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.grey.withOpacity(0.6),
@@ -295,7 +295,7 @@ class _HomePageState extends State<HomePage> {
                             width: size.width*0.9,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
-                              color: Colors.green.shade800,
+                              color: Colors.green.shade600,
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.grey.withOpacity(0.6),
@@ -353,39 +353,56 @@ class _HomePageState extends State<HomePage> {
                         GestureDetector(
                           child: Container(
                             margin: const EdgeInsets.symmetric(
-                              horizontal: 15,
-                              vertical: 5,
+                              vertical: 10,
                             ),
-                            height: 200,
+                            height: size.height*0.2,
+                            width: size.width*0.9,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
-                              color: Colors.green.shade500,
+                              color: Colors.green.shade800,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.6),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 3), // changes position of shadow
+                                ),
+                              ],
                             ),
                             child: Row(
                               children: [
-                                SizedBox(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 10,
-                                      //top: 10
-                                    ),
-                                    child: Text(
-                                      'Trivia               ',
-                                      style: Theme.of(context).textTheme.headline6?.copyWith(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'OpenSans',
-                                        fontSize: 22,
+                                Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 60,
+                                        vertical: 62,
                                       ),
-                                      textAlign: TextAlign.center,
+                                      child: Text(
+                                        'Trivia',
+                                        style: Theme.of(context).textTheme.headline6?.copyWith(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
-                                Image.asset('assets/images/Compost_trivia.png',
-                                  //width: 188,
-                                  height: 150,
-                                  alignment: Alignment.center,
-                                  //opacity: const AlwaysStoppedAnimation(.6),
+                                Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 23,
+                                        horizontal: 5,
+                                      ),
+                                      child: Image.asset('assets/images/Compost_trivia.png',
+                                        width: size.width*0.3,
+                                        fit: BoxFit.fitWidth,
+                                        alignment: Alignment.center,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -394,6 +411,7 @@ class _HomePageState extends State<HomePage> {
                             router.pushNamed(Routes.TRIVIA_MAIN);
                           },
                         ),
+
                         const SizedBox(height: 20),
 
                         // Botón cerrar sesión
@@ -410,6 +428,8 @@ class _HomePageState extends State<HomePage> {
                             router.pushNamedAndRemoveUntil(Routes.LOGIN);
                           },
                         ),
+
+                        const SizedBox(height: 20),
                       ],
                     ),
                   ),
