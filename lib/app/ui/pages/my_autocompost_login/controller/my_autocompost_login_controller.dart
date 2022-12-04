@@ -12,7 +12,7 @@ class MyAutoCompostLoginController extends SimpleNotifier {
 
   void onComposterIdChanged(String text) {
     _composterId = text;
-    composterId = _composterId;
+    //composterId = _composterId;
   }
 
   void submit() {

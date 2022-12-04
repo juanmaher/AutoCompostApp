@@ -29,11 +29,6 @@ class _MyAutoCompostLoginPageState extends State<MyAutoCompostLoginPage> {
 
   late String userUid;
 
-  Future<void> bindComposter() async {
-
-
-  }
-
   @override
   Widget build(BuildContext context) {
 

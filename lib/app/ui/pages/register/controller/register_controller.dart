@@ -6,6 +6,8 @@ import 'package:autocompost/app/utils/composter_id_validator.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_meedu/meedu.dart';
 
+late SignUpData signUpData;
+
 class RegisterController extends StateNotifier<RegisterState>{
   final SessionController _sessionController;
 
@@ -16,7 +18,7 @@ class RegisterController extends StateNotifier<RegisterState>{
 
   Future <SignUpResponse> submit() async {
     final response = await _signUpRepository.register(
-      SignUpData(
+      signUpData = SignUpData(
         state.composterId,
         name: state.name,
         lastname: state.lastname,

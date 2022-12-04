@@ -1,9 +1,7 @@
-import 'package:autocompost/app/domain/inputs/sign_up.dart';
 import 'package:autocompost/app/ui/global_controllers/session_controller.dart';
 import 'package:autocompost/app/ui/pages/home/home_page.dart';
 import 'package:autocompost/app/ui/routes/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,39 +11,18 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class MyAutoCompostPage extends StatefulWidget {
-  const MyAutoCompostPage({Key? key}) : super(key: key);
+  const MyAutoCompostPage(this.composterId, {Key? key, }) : super(key: key);
+
+  final String composterId;
 
   @override
-  State<MyAutoCompostPage> createState() => _MyAutoCompostPageState();
+  State<MyAutoCompostPage> createState() => _MyAutoCompostPageState(composterId);
 }
 
 class _MyAutoCompostPageState extends State<MyAutoCompostPage> {
+  _MyAutoCompostPageState(this.composterId);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Mi Compostera'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            router.pushNamedAndRemoveUntil(Routes.HOME);
-          },
-        ),
-      ),
-      body: const MyAutoCompostPageBody(),
-    );
-  }
-}
-
-class MyAutoCompostPageBody extends StatefulWidget {
-  const MyAutoCompostPageBody({Key? key}) : super(key: key);
-
-  @override
-  State<MyAutoCompostPageBody> createState() => _MyAutoCompostPageBodyState();
-}
-
-class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
+  final String composterId;
 
   final _database = FirebaseDatabase.instance.ref();
 
@@ -58,7 +35,6 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
   late bool _trituradora = false;
   late int _dayOfProcess = 0;
   late bool _fan = false;
-
 
   //Holds the data source of chart
   List<_ChartData> chartData = <_ChartData>[];
@@ -171,7 +147,7 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
                   height: size.height * 0.2 - 27,
                   decoration: BoxDecoration(
                     color: Colors.grey,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(36),
                       bottomRight: Radius.circular(36),
                     ),
@@ -180,7 +156,7 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
                         color: Colors.grey.withOpacity(0.3),
                         spreadRadius: 5,
                         blurRadius: 7,
-                        offset: Offset(0, 3), // changes position of shadow
+                        offset: const Offset(0, 3), // changes position of shadow
                       ),
                     ],
                   ),
@@ -645,23 +621,7 @@ class _MyAutoCompostPageBodyState extends State<MyAutoCompostPageBody> {
                   ],
                 ),
               ),
-              const SizedBox(height: 10),
-
-              CupertinoButton(
-                color: Colors.green,
-                child: const Text(
-                  "Desvincular compostera",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                onPressed: () async {
-                  final String userUid = sessionProvider.read.user!.uid;
-                  _database.child('/users/$userUid').update({'composter_id': ''});
-                  router.pushNamedAndRemoveUntil(Routes.HOME);
-                },
-              ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
             ],
           ),
         ],

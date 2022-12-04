@@ -1,3 +1,4 @@
+import 'package:autocompost/app/ui/global_widgets/dialogs/progress_dialog.dart';
 import 'package:autocompost/app/ui/pages/my_autocompost_login/my_autocompost_login_page.dart';
 import 'package:autocompost/app/ui/routes/routes.dart';
 import 'package:flutter/material.dart';
@@ -9,11 +10,10 @@ Future<void> sendAutoCompostLoginForm(BuildContext context) async {
   final isValidForm = controller.formKey.currentState!.validate();
 
   if (isValidForm) {
-    final isValidComposterId = controller.validateComposterId();
-    if (await isValidComposterId) {
-      controller.submit();
-      router.pushNamedAndRemoveUntil(Routes.MY_AUTOCOMPOST);
-    } else {
+    ProgressDialog.show(context);
+    final response = await controller.validateComposterId();
+    router.pop();
+    if(response == false) {
       Fluttertoast.showToast(
           msg: "Invalid Composter ID",
           toastLength: Toast.LENGTH_SHORT,
@@ -23,6 +23,9 @@ Future<void> sendAutoCompostLoginForm(BuildContext context) async {
           textColor: Colors.white,
           fontSize: 16.0
       );
+    } else {
+      controller.submit();
+      router.pushNamedAndRemoveUntil(Routes.HOME);
     }
   }
 }
