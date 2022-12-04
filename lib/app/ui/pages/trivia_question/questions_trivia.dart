@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'questions.dart';
 import 'counter.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'dart:async';
 import 'package:flutter_meedu/ui.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 
 QuizBrain quizBrain = QuizBrain();
+const int seconds = 60;
 
 class QuestionPage extends StatefulWidget {
   const QuestionPage({Key? key}) : super(key: key);
@@ -19,71 +21,104 @@ class _QuestionPageState extends State<QuestionPage> {
   int correctScore = 0;
   int totalQuestions = quizBrain.getNumberOfQuestions();
   int numberQuestion = 0;
-  int seconds = 60;
+  int userAnswer = -1;
 
-  Counter contador = Counter(15);
+  Counter contador = Counter(seconds);
   //final stream = contador.stream.asBroadcastStream();
   //contador.initiate();
 
   //final suscripcion = stream.listen((segs) => print('Segundos: $segs') );
   //contador.initiate();
 
-  void checkAnswer(int userAnswer) {
-    contador.stop();
-    if (userAnswer == quizBrain.getCorrectAnswer()) {
-      scoreKeeper.add(
-        const Icon(
-          Icons.check,
-          color: Colors.green,
-        ),
-      );
-      correctScore++;
-    } else {
-      scoreKeeper.add(
-        const Icon(
-          Icons.close,
-          color: Colors.red,
-        ),
-      );
-    }
-    if (quizBrain.isFinished() == true) {
-      Alert(
-          context: context,
-          title: "Trivia completada!",
-          content: Column(
-            children: [
-              const Icon(
-                Icons.check,
-                color: Colors.green,
-                size: 50,
-              ),
-              Text('¡Acertaste a $correctScore respuestas correctas de $totalQuestions !',
-              textAlign: TextAlign.center,)
-            ],
+  void checkAnswer(int nmbrAnswer) {
+    if(userAnswer < 0) {
+      SystemSound.play(SystemSoundType.alert);
+      contador.stop();
+      userAnswer = nmbrAnswer;
+      if (nmbrAnswer == quizBrain.getCorrectAnswer()) {
+        FlutterRingtonePlayer.play(fromAsset: "assets/sounds/correct.wav",
+          ios: IosSounds.glass,
+          volume: 0.25,);
+        scoreKeeper.add(
+          const Icon(
+            Icons.check,
+            color: Colors.green,
           ),
-          buttons: [
-            DialogButton(
-              onPressed: () {
-                setState(() {
-                  Navigator.pop(context);
-                  //scoreKeeper.clear();
-                  quizBrain.reset();
-                  correctScore = 0;
-                });
-              },
-              child: const Text(
-                "RETRY",
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-            )
-          ]).show();
+        );
+        correctScore++;
+      } else {
+        FlutterRingtonePlayer.play(fromAsset: "assets/sounds/error.wav",
+          ios: IosSounds.glass,
+          volume: 0.15,);
+        scoreKeeper.add(
+          const Icon(
+            Icons.close,
+            color: Colors.red,
+          ),
+        );
+      }
+      if (quizBrain.isFinished() == true) {
+        Alert(
+            context: context,
+            title: "Trivia completada!",
+            content: Column(
+              children: [
+                const Icon(
+                  Icons.check,
+                  color: Colors.green,
+                  size: 50,
+                ),
+                Text(
+                  '¡Acertaste a $correctScore respuestas correctas de $totalQuestions !',
+                  textAlign: TextAlign.center,)
+              ],
+            ),
+            buttons: [
+              DialogButton(
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                    //scoreKeeper.clear();
+                    contador.restart();
+                    quizBrain.reset();
+                    correctScore = 0;
+                  });
+                },
+                child: const Text(
+                  "RETRY",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              )
+            ]).show();
+      }
     }
   }
   void nextQuestion(){
-    checkAnswer(-1);
-    if (quizBrain.isFinished() == false) {
-      contador.restart();
-      quizBrain.nextQuestion();
+    if(userAnswer >= 0) {
+      if (quizBrain.isFinished() == false) {
+        contador.restart();
+        quizBrain.nextQuestion();
+        userAnswer = -1;
+      }
+    }else{
+      checkAnswer(100000);
+    }
+  }
+
+  Color getColor(int position){
+    if(userAnswer >= 0 && quizBrain.getCorrectAnswer() == position){
+      return Colors.green;
+    }else if(userAnswer >= 0 && userAnswer == position){
+      return Colors.red;
+    }
+    return Colors.grey;
+  }
+
+  String getSkip(){
+    if(userAnswer >= 0){
+      return "Siguiente";
+    }else{
+      return "Saltear";
     }
   }
 
@@ -91,7 +126,7 @@ class _QuestionPageState extends State<QuestionPage> {
   Widget build(BuildContext context) {
     contador.stream.asBroadcastStream().listen((segs)  {if(segs == 0) {
       setState(() {
-        checkAnswer(-1);
+        checkAnswer(10000);
       });
     }
     } );
@@ -164,7 +199,7 @@ class _QuestionPageState extends State<QuestionPage> {
               ),
               child: Container(
                 height: double.infinity,
-                color: Colors.green,
+                color: getColor(0),
                 child: Center(
                   child: Text(
                     quizBrain.getAnswer(0),
@@ -196,7 +231,7 @@ class _QuestionPageState extends State<QuestionPage> {
               ),
               child: Container(
                 height: double.infinity,
-                color: Colors.red,
+                color: getColor(1),
                 child: Center(
                   child: Text(
                     quizBrain.getAnswer(1),
@@ -257,10 +292,10 @@ class _QuestionPageState extends State<QuestionPage> {
                   width: double.infinity,
                   height: double.infinity,
                   color: Colors.yellow,
-                  child: const Text(
-                  "Siguiente",
+                  child: Text(
+                    getSkip(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20.0,
                     color: Colors.black,
                   ),

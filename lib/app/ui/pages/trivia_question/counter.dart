@@ -29,15 +29,12 @@ class Counter{
   }
 
   void restart(){
-    _counter.close();
-    _counter = StreamController<int>.broadcast();
     initiate();
-    _counter.sink.add(_count+1);
+    _counter.sink.add(_count--);
   }
 
   void stop(){
     tiempo.cancel();
-    _counter.close();
   }
 
 
