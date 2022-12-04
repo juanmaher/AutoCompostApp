@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'questions.dart';
 import 'counter.dart';
+import 'optionBuilder.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:flutter_meedu/ui.dart';
 import 'package:flutter/services.dart';
@@ -18,6 +19,7 @@ class QuestionPage extends StatefulWidget {
 
 class _QuestionPageState extends State<QuestionPage> {
   List<Widget> scoreKeeper = [];
+  List<Widget> optionWidgets = <Widget>[];
   int correctScore = 0;
   int totalQuestions = quizBrain.getNumberOfQuestions();
   int numberQuestion = 0;
@@ -130,6 +132,13 @@ class _QuestionPageState extends State<QuestionPage> {
       });
     }
     } );
+    optionWidgets = <Widget>[];
+    for (int i = 0; i < quizBrain.getAnswers().length; i++){
+      optionWidgets.add(getWidgetOption(
+                          getColor(i),
+                          quizBrain.getAnswer(i),
+                          () {setState(() {checkAnswer(i); }); }  ));
+    }
     return Scaffold(
         body: Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -187,7 +196,7 @@ class _QuestionPageState extends State<QuestionPage> {
           ),
         ),
         const Spacer(),
-        Expanded(
+        /*Expanded(
           flex: 2,
           child: Padding(
             padding: EdgeInsets.all(15.0),
@@ -252,8 +261,13 @@ class _QuestionPageState extends State<QuestionPage> {
               },
             ),
           ),
+        ),*/
+        Expanded(
+          flex: 6,
+          child:Column(children: optionWidgets,),
         ),
         //Row(children: scoreKeeper)
+        const Spacer(),
         SizedBox(
           height: 50,
         child: Row(
