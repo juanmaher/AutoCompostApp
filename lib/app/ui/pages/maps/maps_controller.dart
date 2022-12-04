@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:autocompost/app/ui/pages/maps/markers.dart';
+import 'package:autocompost/app/ui/pages/maps/markers_maps.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MapsController extends ChangeNotifier{
@@ -59,20 +59,20 @@ class MapsController extends ChangeNotifier{
   void setMarkersOnMap(GoogleMapController controller){
 
     Marker marker;
-    for (var i = 0; i < 15; i++){
+    for (var i = 0; i < markersMaps.length; i++){
       marker = Marker(
-        markerId: MarkerId('$i'),
-        position: listOfLatLngs[i],
+        markerId: MarkerId('${markersMaps[i].id}'),
+        position: LatLng(markersMaps[i].lat,markersMaps[i].lng),
         //icon: BitmapDescriptor.,
         infoWindow: InfoWindow(
           onTap: (){
-            _launchMap(directions[i]);
+            _launchMap(markersMaps[i].url);
           },
-          title: title[i],
-          snippet: subtitle[i],
+          title: markersMaps[i].title,
+          snippet: markersMaps[i].address,
         ),
       );
-      _markers[MarkerId('$i')] = marker;
+      _markers[MarkerId('${markersMaps[i].id}')] = marker;
       notifyListeners();
     }
 
