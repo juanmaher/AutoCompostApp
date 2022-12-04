@@ -14,7 +14,7 @@ class QuizBrain {
     Question('¿Qué materiales NO se pueden poner en una compostera domiciliaria?',
         ["Yerba y café", "Lácteos y aceites"], 1),
     Question('El compostaje es un proceso:', ["Anaeróbico (que no requiere oxígeno)", "Aeróbico (que requiere oxígeno)"], 1),
-    Question('Aproximadamente: ¿Que porcentaje de nuestra basura es organinca en Argentina?', ["49%", "33%"], 0)
+    Question('Aproximadamente: ¿Que porcentaje de nuestra basura es organica en Argentina?', ["49%", "33%"], 0)
   ];
 
   void reset() {
