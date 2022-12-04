@@ -51,17 +51,16 @@ class _MyComposterPageState extends State<MyComposterPage> with TickerProviderSt
             newComposterId = text;
           },
           prefix: const Text(
-            'ID Compostera',
+            'ID Compostera:',
             style: TextStyle(
               fontWeight: FontWeight.bold,
             ),
           ),
-          decoration: const BoxDecoration(),
         ),
         actions: [
           CupertinoDialogAction(
             onPressed: () async {
-              if(await isValidComposterId(newComposterId)) {
+              if(await isValidComposterId(newComposterId) && newComposterId != '') {
                 bool isRepeated = false;
                 for (var value in userData.composterIds) {
                   if(value == newComposterId) {
@@ -143,7 +142,7 @@ class _MyComposterPageState extends State<MyComposterPage> with TickerProviderSt
         actions: [
           CupertinoDialogAction(
             onPressed: () async {
-              if(await isValidComposterId(removeComposterId)) {
+              if(await isValidComposterId(removeComposterId) && removeComposterId != '') {
                 final String userUid = sessionProvider.read.user!.uid;
                 FirebaseDatabase.instance.ref().child('/users/$userUid/composters_ids/$removeComposterId').remove();
                 setState(() {
