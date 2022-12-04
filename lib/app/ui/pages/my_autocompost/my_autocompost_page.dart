@@ -38,6 +38,9 @@ class _MyAutoCompostPageState extends State<MyAutoCompostPage> {
   late bool _trituradora = false;
   late int _dayOfProcess = 0;
   late bool _fan = false;
+  late String _fanMsg = '';
+  late String _trituradoraMsg = '';
+  late String _mezcladoraMsg = '';
 
   //Holds the data source of chart
   List<_ChartData> chartData = <_ChartData>[];
@@ -90,12 +93,22 @@ class _MyAutoCompostPageState extends State<MyAutoCompostPage> {
       final bool data4 = (event.snapshot.value ?? false) as bool;
       setState(() {
         _mezcladora = data4;
+        if (_mezcladora == true) {
+          _mezcladoraMsg = 'Encendido';
+        } else {
+          _mezcladoraMsg = 'Apagado';
+        }
       });
     });
     _database.child('/composters/$composterId/trituradora').onValue.listen((event) {
       final bool data5 = (event.snapshot.value ?? false) as bool;
       setState(() {
         _trituradora = data5;
+        if (_trituradora == true) {
+          _trituradoraMsg = 'Encendido';
+        } else {
+          _trituradoraMsg = 'Apagado';
+        }
       });
     });
     _database.child('/composters/$composterId/days').onValue.listen((event) {
@@ -108,6 +121,11 @@ class _MyAutoCompostPageState extends State<MyAutoCompostPage> {
       final bool data1 = (event.snapshot.value ?? false) as bool;
       setState(() {
         _fan = data1;
+        if (_fan == true) {
+          _fanMsg = 'Encendido';
+        } else {
+          _fanMsg = 'Apagado';
+        }
       });
     });
   }
@@ -431,108 +449,168 @@ class _MyAutoCompostPageState extends State<MyAutoCompostPage> {
                   style: Theme.of(context).textTheme.headline6?.copyWith(
                     color: Colors.green,
                     fontWeight: FontWeight.bold,
+                    fontSize: 25,
                   ),
                 ),
               ),
               const SizedBox(height: 10),
 
               // Tritudora
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                        (Set<MaterialState> states) {
-                      if (_trituradora != true) {
-                        return Colors.grey;
-                      }
-                      return Colors.green;
-                    },
-                  ),
-                ),
-                onPressed: () {
-                  if(_trituradora != true) {
-                    databaseComposterRef.update({'trituradora': true});
-                  } else {
-                    databaseComposterRef.update({'trituradora': false});
-                  }
-                },
-                child: Text(
-                  'Trituradora',
-                  style: Theme.of(context).textTheme.headline6?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+              Center(
+                child: Column(
+                  children: [
+                    Text(
+                      'Trituradora',
+                      style: Theme.of(context).textTheme.headline6?.copyWith(
+                        color: Colors.green.shade300,
+                        fontSize: 18,
+                      ),
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                              (Set<MaterialState> states) {
+                            if (_trituradora != true) {
+                              return Colors.grey;
+                            }
+                            return Colors.green;
+                          },
+                        ),
+                      ),
+                      onPressed: () {
+                        if(_trituradora != true) {
+                          databaseComposterRef.update({'trituradora': true});
+                          flutterLocalNotificationsPlugin.show(
+                              0,
+                              "Prendiste la trituradora",
+                              "No te olvides de apagarla",
+                              NotificationDetails(
+                                  android: AndroidNotificationDetails(channel.id, channel.name,
+                                      channelDescription: channel.description,
+                                      importance: Importance.high,
+                                      color: Colors.blue,
+                                      playSound: true,
+                                      icon: '@mipmap/launcher_icon')));
+                        } else {
+                          databaseComposterRef.update({'trituradora': false});
+                        }
+                      },
+                      child: Text(
+                        _trituradoraMsg,
+                        style: Theme.of(context).textTheme.headline6?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 10),
 
               // Ventilador
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                        (Set<MaterialState> states) {
-                      if (_fan != true) {
-                        return Colors.grey;
-                      }
-                      return Colors.green;
-                    },
-                  ),
-                ),
-                onPressed: () {
-                  if(_fan != true) {
-                    databaseComposterRef.update({'fan': true});
-                  } else {
-                    databaseComposterRef.update({'fan': false});
-                  }
-                },
-                child: Text(
-                  'Ventilador',
-                  style: Theme.of(context).textTheme.headline6?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+              Center(
+                child: Column(
+                  children: [
+                    Text(
+                      'Ventilador',
+                      style: Theme.of(context).textTheme.headline6?.copyWith(
+                        color: Colors.green.shade300,
+                        fontSize: 18,
+                      ),
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                              (Set<MaterialState> states) {
+                            if (_fan != true) {
+                              return Colors.grey;
+                            }
+                            return Colors.green;
+                          },
+                        ),
+                      ),
+                      onPressed: () {
+                        if(_fan != true) {
+                          databaseComposterRef.update({'fan': true});
+                          flutterLocalNotificationsPlugin.show(
+                              0,
+                              "Prendiste el ventilador",
+                              "No te olvides de apagarlo",
+                              NotificationDetails(
+                                  android: AndroidNotificationDetails(channel.id, channel.name,
+                                      channelDescription: channel.description,
+                                      importance: Importance.high,
+                                      color: Colors.blue,
+                                      playSound: true,
+                                      icon: '@mipmap/launcher_icon')));
+                        } else {
+                          databaseComposterRef.update({'fan': false});
+                        }
+                      },
+                      child: Text(
+                        _fanMsg,
+                        style: Theme.of(context).textTheme.headline6?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 10),
 
               // Mezcladora
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                        (Set<MaterialState> states) {
-                      if (_mezcladora != true) {
-                        return Colors.grey;
-                      }
-                      return Colors.green;
-                    },
-                  ),
-                ),
-                onPressed: () {
-                  if(_mezcladora != true) {
-                    databaseComposterRef.update({'mezcladora': true});
-                    /*
-                    flutterLocalNotificationsPlugin.show(
-                        0,
-                        "Prendiste la mezcladora",
-                        "No te olvides de apagarla",
-                        NotificationDetails(
-                            android: AndroidNotificationDetails(channel.id, channel.name,
-                                channelDescription: channel.description,
-                                importance: Importance.high,
-                                color: Colors.blue,
-                                playSound: true,
-                                icon: '@mipmap/ic_launcher')));
+              Center(
+                child: Column(
+                  children: [
+                    Text(
+                      'Mezcladora',
+                      style: Theme.of(context).textTheme.headline6?.copyWith(
+                        color: Colors.green.shade300,
+                        fontSize: 18,
+                      ),
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                              (Set<MaterialState> states) {
+                            if (_mezcladora != true) {
+                              return Colors.grey;
+                            }
+                            return Colors.green;
+                          },
+                        ),
+                      ),
+                      onPressed: () {
+                        if(_mezcladora != true) {
+                          databaseComposterRef.update({'mezcladora': true});
+                          flutterLocalNotificationsPlugin.show(
+                              0,
+                              "Prendiste la mezcladora",
+                              "No te olvides de apagarla",
+                              NotificationDetails(
+                                  android: AndroidNotificationDetails(channel.id, channel.name,
+                                      channelDescription: channel.description,
+                                      importance: Importance.high,
+                                      color: Colors.blue,
+                                      playSound: true,
+                                      icon: '@mipmap/launcher_icon')));
 
-                     */
-                  } else {
-                    databaseComposterRef.update({'mezcladora': false});
-                  }
-                },
-                child: Text(
-                  'Mezcladora',
-                  style: Theme.of(context).textTheme.headline6?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                        } else {
+                          databaseComposterRef.update({'mezcladora': false});
+                        }
+                      },
+                      child: Text(
+                        _mezcladoraMsg,
+                        style: Theme.of(context).textTheme.headline6?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 20),
